@@ -1,0 +1,60 @@
+digraph G {
+  #dot -Tpng -Gsize=9,15\! -Gdpi=100  dataTypes.gv -o dataTypes.png && kitty icat dataTypes.png
+  graph [
+    fontname = "Monserrat",
+    fontcolor="white",
+    #bgcolor="black",
+    bgcolor="transparent"
+    penwidth=1.5,
+    #newrank=true, # Permite alinear HEAD
+    rankdir="BT"
+    ranksep=1.3
+    splines=true
+    color=white
+  ];
+  node [
+    fontcolor="white",
+    fontname = "helvetica"
+    color="#37CDCB"
+    shape=box
+  ];
+  edge [
+    fontcolor="white",
+    color="white"
+    fontname = "helvetica"
+  ];
+
+  subgraph cluster_1 {
+    t1 [label="Bool"]
+    t2 [label="Int"]
+    t3 [label="Float"]
+    t4 [label="Char"]
+    t5 [label="String"]
+    t6 [label="List a"]
+    t7 [label="()"]
+    label = "Primitives";
+    labelloc="b"
+  }
+
+  subgraph cluster_2 {
+    c1 [label="number"]
+    c2 [label="appendable"]
+    c3 [label="comparable"]
+    label = "Constrained"
+    labelloc="t"
+  }
+
+  c1 -> t2;
+  c1 -> t3;
+
+  c2 -> t5;
+  c2 -> t6;
+
+  c3 -> t2;
+  c3 -> t3;
+  c3 -> t4;
+  c3 -> t5;
+  c3 -> t6;
+  c3 -> t7;
+  #{ rank = same; c0, c1, c2, c3; }
+}

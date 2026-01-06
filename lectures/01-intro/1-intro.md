@@ -181,11 +181,7 @@ Take care of yourself if you are experiencing difficulties, dont hesitate to rea
 Let's make a plan to help you succeed.
 <!-- end_slide -->
 
-<!-- jump_to_middle -->
-### Math language
-<!-- end_slide -->
-
-### Course intro      
+## Course intro      
 - Why this career?
 <!-- pause -->
 - Do you enjoy writting code?
@@ -196,7 +192,7 @@ Let's make a plan to help you succeed.
 <!-- pause -->
 - Which editor/tools do you use to write code?
 <!-- pause -->
-- Do you know what is git?
+- Do you know what git is?
 <!-- pause -->
 - Which Operating system do you use?
 <!-- pause -->
@@ -207,7 +203,14 @@ Let's make a plan to help you succeed.
 - `Do you enjoy reading?` (Not limited to books)
 <!-- pause -->
 - To whom do you write code to?
+<!-- pause -->
+- Did you enjoy your OOP course?
 <!-- end_slide -->
+
+<!-- jump_to_middle -->
+### Math language
+<!-- end_slide -->
+
 
 ### What is programming?
 <!-- pause -->
@@ -231,6 +234,18 @@ You should be able to think about a single area of a codebase without needing to
 ![](./assets/modular.jpg)
 <!-- reset_layout -->
 <!-- end_slide -->
+
+### Modularity
+Good programming should be **modular.**
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+Let's suppose we are writting a program to buy items online, why developing the payment processing module, we shouldn't be concerned about authentication!
+
+Programs grow in complexity at an impressive rate, our memory can't keep up.
+<!-- column: 1 -->
+![](./assets/modular.jpg)
+<!-- reset_layout -->
+<!-- end_slide -->
 ### Maintainability
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
@@ -239,13 +254,15 @@ Good programming should be **maintainable.**
 Programs should be written with future maintainability in mind.
 
 Code written expressively, and has future expansion in mind, will be easiest to maintain.
+
+We write code for our future selfs, for our development team and lastly for the computer.
 <!-- column: 1 -->
 ![](./assets/maintain.png)
 <!-- reset_layout -->
 <!-- end_slide -->
 
 ### Math language (Values and expressions)
-> Expression: Mathematical phrase made of numbers, simbols and operators.     
+> Expression: Combination of one or more constants, variables, functions, and operators     
 ```latex +render
 \[ 5 + 2 \]
 ```
@@ -280,7 +297,7 @@ Let's evaluate this expression:
 ```
 <!-- column: 1 -->
 <!-- pause -->
-> Expression: Mathematical phrase made of numbers, simbols and operators.     
+> Expression: Combination of one or more constants, variables, functions, and operators     
 
 > Value: The result of a calculation (a **final answer** that cannot be simplified further)      
 <!-- pause -->
@@ -334,7 +351,7 @@ What are the possible values **x** can assume?
 <!-- end_slide -->
 
 ### Math language (Values and expressions)
-But what happens if we try to evaluate:
+What happens if we try to evaluate:
 ```latex +render +width:50%
 
 \begin{align}
@@ -354,7 +371,33 @@ But what happens if we try to evaluate:
 ```
 <!-- end_slide -->
 ### Math language (Values and expressions)
-Finally let's try:
+<!-- new_line -->
+Math gives us this clear and concise language, with clear rules and simbols.
+<!-- new_line -->
+<!-- column_layout: [1,2] -->
+<!-- column: 0 -->
+```latex +render
+\begin{align}
+(5 + 2) * 3 &\Longrightarrow 7 * 3 \\
+            &\Longrightarrow 21
+\end{align}
+```
+<!-- column: 1 -->
+```latex +render
+\begin{align}
+(5 + 2) * 3x = (4 + 3) * x &\Longrightarrow 7 * 3x = 7 * x \\
+            &\Longrightarrow 21x = 7x \\
+            &\Longrightarrow 21x - 7x = 0 \\
+            &\Longrightarrow 14x = 0 \\
+            &\Longrightarrow x = 0
+
+\end{align}
+```
+<!-- reset_layout -->
+<!-- end_slide -->
+
+### Math language (Values and expressions)
+Finally let's try to evaluate:
 ```latex +render
 \begin{align}
 x = x + 1
@@ -485,7 +528,7 @@ This behaviour can be found in the real world:
 2. Want to use a univerity bathroom stall
 - - The bathroom might be occupied or not
 - - The bathroom might be closed by the cleaning services
-- - The bathroom might be out of service     
+- - The bathroom sink might have no water
 
 The `state` is unpredictable because there are several processes that modify its `state`.
 <!-- end_slide -->
@@ -545,6 +588,11 @@ In functional programs, we apply simplifying rules to expressions like 2 + 2, to
 These expressions are **disjoint**, in that evaluation of one expression is unrelated to the evaluation of another.
 
 <!-- end_slide -->
+
+#### Last word
+Functional programming allows reasoning about programs and their subcomponents in the same way that you would reason about a mathematical expression.
+
+We’re not just in the business of writing code, but correct code!
 
 <!-- jump_to_middle -->
 ##### Homework
