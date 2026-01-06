@@ -99,19 +99,21 @@ Requirements:
 
 <!-- end_slide -->
 
-## Course structure
-**Partial test**
+## Course structure **Partial test**
 - `1st Partial = 30%`
 - - Class exercise / Homework = 10%
-- - Theorical evaluation = 40%
-- - Practical evaluation (paper based, NO computer) = 50%
+- - Theorical evaluation - Functional paradigm = 20%
+- - Theorical evaluation - HTML = 20%
+- - Practical evaluation - Functional paradigm (`paper based, NO computer!`) = 50%
+- - Practical evaluation - HTML (`paper based, NO computer!`) = 50%
+<!-- pause -->
 - `2nd Partial = 30%`
 - - Class exercise / Homework = 10%
 - - Theorical evaluation = 40%
 - - Practical evaluation (paper based, NO computer) = 50%
+<!-- pause -->
 - `3rd Partial = 40%`
-- - Class exercise / Homework = 10%
-- - Theorical evaluation = 30%
+- - Theorical evaluation = 40%
 - - Practical evaluation (paper based, NO computer) = 60%
 
 <!-- end_slide -->
@@ -593,6 +595,7 @@ These expressions are **disjoint**, in that evaluation of one expression is unre
 Functional programming allows reasoning about programs and their subcomponents in the same way that you would reason about a mathematical expression.
 
 We’re not just in the business of writing code, but correct code!
+<!-- end_slide -->
 
 <!-- jump_to_middle -->
 ##### Homework

@@ -97,5 +97,127 @@ Functional programming places a great emphasis on types, which serve the purpose
 
 In this way, `types guide the structure of a program`, by providing clean interfaces for how different parts should interact, and what it should be allowed to do.
 <!--end_slide -->
-## Types guide structure (shape)
+## Data types
+We will be using a functional programming language called **Elm** which support the following data types:
+<!-- column_layout: [2,1] -->
+<!-- column: 0 -->
 ![](./assets/gviz/dataTypes.png)
+<!-- column: 1 -->
+![](./assets/elmo-door.gif)
+<!-- reset_layout -->
+<!-- end_slide -->
+
+## Data types
+> Type: Is a specification of the behavior of a piece of code. It **predicts** what a program is allowed to do.
+
+To say that an expression e has type t we write:
+```latex +render
+\[ e : t \]
+```
+For example:
+```latex +render +width:20%
+\[ (5 + 2) * 3 : Int \]
+```
+We are communicating that the expression (5 + 2) * 3 must produce a value of type Int
+
+<!-- end_slide -->
+## Data types
+Tracing back our value definition:
+> Value: The result of a calculation (a **final answer** that cannot be simplified further)      
+
+We can exemplify **values** for each data type:
+```latex +render
+\begin{align}
+True &: Bool \\
+1 &: Int \\
+3.14 &: Float \\ 
+'a' &: Char \\
+''abc'' &: String
+\end{align}
+```
+"abc" : String 
+<!-- end_slide -->
+
+## Data types & operators
+Elm is a `statically typed` language, meaning that all typing rules are applied `before the program is ever run`
+Let's analyze how Elm enforces it's type rules:
+
+```latex +render +width:20%
+\[ (5 + 2) * 3 : Int \]
+```
+<!-- column_layout: [1,1,1] -->
+<!-- column: 0 -->
+The typing rule for **+** is:
+```latex +render
+\begin{align}
+e1 + e2 &: Int \\
+if \\
+e1 &: Int \\
+and \\
+e2 &: Int
+\end{align}
+```
+<!-- pause -->
+<!-- column: 1 -->
+We know
+```latex +render
+\begin{align}
+5 &: Int \\
+and \\
+2 &: Int \\
+so \\
+5 + 2 &: Int
+\end{align}
+```
+<!-- pause -->
+<!-- column: 2 -->
+The typing rule for **\*** is:
+```latex +render
+\begin{align}
+e1 * e2 &: Int \\
+if \\
+e1 &: Int \\
+and \\
+e2 &: Int
+\end{align}
+```
+<!-- reset_layout -->
+<!-- end_slide -->
+## Data types & operators
+Now lets learn a new operator **++** 
+<!-- pause -->
+<!-- column_layout: [1,2] -->
+<!-- column: 0 -->
+The typing rule for **++** is:
+```latex +render
+\begin{align}
+e1 ++  e2 &: appendable \\
+if \\
+e1 &: appendable \\
+and \\
+e2 &: appendable
+\end{align}
+```
+<!-- column: 1 -->
+![](./assets/gviz/dataTypes.png)
+Anyone can figure out a valid expression with **++**?
+<!-- reset_layout -->
+
+<!-- end_slide -->
+
+## Data types & operators
+Finally let's analyze the expression:
+```latex +render +width:35%
+\begin{align}
+''Hello'' ++ 2 \\
+''Hello'' ++ 2 :& appendable \\
+if \\
+''Hello'' :& appendable ✅\\
+and \\
+2 :& appendable ❌
+\end{align}
+```
+<!-- pause -->
+So "Hello" ++ 2 does not have a type, and we say it's an `ill-typed expression`
+**Ill-typed programs are not evaluated**
+<!-- end_slide -->
