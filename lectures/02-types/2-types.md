@@ -24,9 +24,9 @@ Agenda
 ===
 ├── Recap   
 ├── Types      
-├──     
-├──     
-└──    
+├── Functions    
+├── Installation    
+└── Homework   
 
 <!-- end_slide -->
 
@@ -115,10 +115,10 @@ To say that an expression e has type t we write:
 \[ e : t \]
 ```
 For example:
-```latex +render +width:20%
-\[ (5 + 2) * 3 : Int \]
+```latex +render +width:30%
+\[ (5 + 2) * 3 : number \]
 ```
-We are communicating that the expression (5 + 2) * 3 must produce a value of type Int
+We are communicating that the expression (5 + 2) * 3 must produce a value of type number (either Int or Float)
 
 <!-- end_slide -->
 ## Data types
@@ -143,18 +143,18 @@ Elm is a `statically typed` language, meaning that all typing rules are applied 
 Let's analyze how Elm enforces it's type rules:
 
 ```latex +render +width:20%
-\[ (5 + 2) * 3 : Int \]
+\[ (5 + 2) * 3 : number \]
 ```
 <!-- column_layout: [1,1,1] -->
 <!-- column: 0 -->
 The typing rule for **+** is:
 ```latex +render
 \begin{align}
-e1 + e2 &: Int \\
+e1 + e2 &: number \\
 if \\
-e1 &: Int \\
+e1 &: number \\
 and \\
-e2 &: Int
+e2 &: number
 \end{align}
 ```
 <!-- pause -->
@@ -174,11 +174,11 @@ so \\
 The typing rule for **\*** is:
 ```latex +render
 \begin{align}
-e1 * e2 &: Int \\
+e1 * e2 &: number \\
 if \\
-e1 &: Int \\
+e1 &: number \\
 and \\
-e2 &: Int
+e2 &: number
 \end{align}
 ```
 <!-- reset_layout -->
@@ -204,6 +204,15 @@ Anyone can figure out a valid expression with **++**?
 <!-- reset_layout -->
 
 <!-- end_slide -->
+## Data types & operators
+```latex +render
+\begin{align}
+''Hello''  : String++  ''world'' &: String \Longrightarrow \\
+''Helloworld'' &: String 
+\end{align}
+```
+
+<!-- end_slide -->
 
 ## Data types & operators
 Finally let's analyze the expression:
@@ -220,4 +229,132 @@ and \\
 <!-- pause -->
 So "Hello" ++ 2 does not have a type, and we say it's an `ill-typed expression`
 **Ill-typed programs are not evaluated**
+<!-- end_slide -->
+## Variables
+In elm we can create variables just by giving a name and binding a value:
+```elm
+myName = "Mitsiu"
+```
+Elm response is:
+Mitsiu : String
+But let's look what happens if we try with a numerical value
+<!-- end_slide -->
+## Data types & operators
+Elm is unable to determine "age" type with certainty, it can be:
+- A float that happens to have no decimal
+- An integer
+
+Let's improve our communication hability:
+```elm +line_numbers
+age : Int
+age = 32
+```
+
+Line 1 is a type annotation it help's auto-document our code and clears all ambiguity about our true intent.
+
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+### Functions       
+<!-- end_slide -->
+
+### Functions
+In math we find:
+
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render +width:35%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+<!-- pause -->
+- f is the name of the function
+- f(x) the function f has an input x 
+- = 2 * x describe what the function does
+<!-- pause -->
+<!-- column: 1 -->
+![](./assets/gviz/domainRange.png)
+<!-- reset_layout -->
+<!-- end_slide -->
+### Functions & Data types
+Let's dig deeper into our function
+
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render +width:35%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+- f is the name of the function
+- f(x) the function f has an input x 
+- = 2 * x describe what the function does
+<!-- pause -->
+<!-- column: 1 -->
+The typing rule for **\*** is:
+```latex +render
+\begin{align}
+e1 * e2 &: number \\
+if \\
+e1 &: number \\
+and \\
+e2 &: number
+\end{align}
+```
+<!-- reset_layout -->
+What can be inferred about the input and output of our function f?
+<!-- end_slide -->
+
+### Functions & Data types
+```latex +render +width:20%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+- Which data types can "x" be?
+- Which data types can the output be?
+<!-- end_slide -->
+### Functions definition & Data types
+```latex +render +width:20%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+Let's start to code our first function in elm
+First our type annotation
+```elm +line_numbers
+f : number -> number
+```
+The function parameter has type number and the function returns a number
+<!-- pause -->
+Then our function body
+```elm +line_numbers
+f : number -> number
+f x = 
+    2 * x
+```
+<!-- end_slide -->
+
+### Function application
+To use the functions we just defined, we have to `apply` it. 
+1. We specify the function to apply by it's name
+2. We have to provide a value for the input "x"
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```elm +line_numbers
+-- Function definition
+f : number -> number
+f x = 
+    2 * x
+
+-- Function application
+f 4
+```
+<!-- column: 1 -->
+So we would have that 
+```latex +render
+\[ f 4 \Longrightarrow  8 \]
+```
+<!-- reset_layout -->
 <!-- end_slide -->

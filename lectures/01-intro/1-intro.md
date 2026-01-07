@@ -104,8 +104,8 @@ Requirements:
 - - Class exercise / Homework = 10%
 - - Theorical evaluation - Functional paradigm = 20%
 - - Theorical evaluation - HTML = 20%
-- - Practical evaluation - Functional paradigm (`paper based, NO computer!`) = 50%
-- - Practical evaluation - HTML (`paper based, NO computer!`) = 50%
+- - Practical evaluation - Functional paradigm (`paper based, NO computer!`) = 25%
+- - Practical evaluation - HTML (`paper based, NO computer!`) = 25%
 <!-- pause -->
 - `2nd Partial = 30%`
 - - Class exercise / Homework = 10%
