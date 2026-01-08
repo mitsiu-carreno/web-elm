@@ -461,15 +461,6 @@ x has a new value, we change the world, from one where x was 0, to be one where 
 <!-- end_slide -->
 
 #### Imperative programming
-```java +line_numbers
-int x = 0;
-for (int i = 0; i < 5; i++){
-    x = x + 1;  
-}
-```
-Imagine we are tracking a bug that occurs in line 3, this is problematic because, understanding a programs entails `not only understanding what the code does, but knowing the entire history of the program up until that point.` 
-<!-- end_slide -->
-#### Imperative programming
 Let's look at other example of non-functional code in Java:
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
@@ -487,7 +478,9 @@ class Inc {
 <!-- column: 1 -->
 If i call `Inc.increment()` what does it return?
 <!-- pause -->
-The answer: **it depends**. On the first call, it returns 1, on the second call, 2 and so on.
+The answer: **it depends**. On the first call, it returns 1, on the second call, 2 and so on.   
+
+This is problematic because, understanding a programs entails `not only understanding what the code does, but knowing the entire history of the program up until that point.` 
 <!-- reset_layout -->
 <!-- end_slide -->
 

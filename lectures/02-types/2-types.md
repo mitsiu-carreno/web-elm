@@ -24,9 +24,7 @@ Agenda
 ===
 ├── Recap   
 ├── Types      
-├── Functions    
-├── Installation    
-└── Homework   
+└── Instalation
 
 <!-- end_slide -->
 
@@ -135,7 +133,6 @@ True &: Bool \\
 ''abc'' &: String
 \end{align}
 ```
-"abc" : String 
 <!-- end_slide -->
 
 ## Data types & operators
@@ -230,131 +227,43 @@ and \\
 So "Hello" ++ 2 does not have a type, and we say it's an `ill-typed expression`
 **Ill-typed programs are not evaluated**
 <!-- end_slide -->
-## Variables
-In elm we can create variables just by giving a name and binding a value:
-```elm
-myName = "Mitsiu"
-```
-Elm response is:
-Mitsiu : String
-But let's look what happens if we try with a numerical value
-<!-- end_slide -->
-## Data types & operators
-Elm is unable to determine "age" type with certainty, it can be:
-- A float that happens to have no decimal
-- An integer
-
-Let's improve our communication hability:
-```elm +line_numbers
-age : Int
-age = 32
-```
-
-Line 1 is a type annotation it help's auto-document our code and clears all ambiguity about our true intent.
-
-<!-- end_slide -->
 
 <!-- jump_to_middle -->
-### Functions       
-<!-- end_slide -->
-
-### Functions
-In math we find:
-
+### Installation
+<!--end_slide -->
+### NodeJs
+You can download and install the prebuilt 
+https://nodejs.org/en/download
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
-```latex +render +width:35%
-\begin{align}
-f(x) = 2 * x
-\end{align}
-```
-<!-- pause -->
-- f is the name of the function
-- f(x) the function f has an input x 
-- = 2 * x describe what the function does
-<!-- pause -->
+![](./assets/node-install.png)
 <!-- column: 1 -->
-![](./assets/gviz/domainRange.png)
-<!-- reset_layout -->
-<!-- end_slide -->
-### Functions & Data types
-Let's dig deeper into our function
+Verify your installation with these two commands:
+```bash
+node --version
 
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-```latex +render +width:35%
-\begin{align}
-f(x) = 2 * x
-\end{align}
-```
-- f is the name of the function
-- f(x) the function f has an input x 
-- = 2 * x describe what the function does
-<!-- pause -->
-<!-- column: 1 -->
-The typing rule for **\*** is:
-```latex +render
-\begin{align}
-e1 * e2 &: number \\
-if \\
-e1 &: number \\
-and \\
-e2 &: number
-\end{align}
-```
-<!-- reset_layout -->
-What can be inferred about the input and output of our function f?
-<!-- end_slide -->
-
-### Functions & Data types
-```latex +render +width:20%
-\begin{align}
-f(x) = 2 * x
-\end{align}
-```
-- Which data types can "x" be?
-- Which data types can the output be?
-<!-- end_slide -->
-### Functions definition & Data types
-```latex +render +width:20%
-\begin{align}
-f(x) = 2 * x
-\end{align}
-```
-Let's start to code our first function in elm
-First our type annotation
-```elm +line_numbers
-f : number -> number
-```
-The function parameter has type number and the function returns a number
-<!-- pause -->
-Then our function body
-```elm +line_numbers
-f : number -> number
-f x = 
-    2 * x
-```
-<!-- end_slide -->
-
-### Function application
-To use the functions we just defined, we have to `apply` it. 
-1. We specify the function to apply by it's name
-2. We have to provide a value for the input "x"
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-```elm +line_numbers
--- Function definition
-f : number -> number
-f x = 
-    2 * x
-
--- Function application
-f 4
-```
-<!-- column: 1 -->
-So we would have that 
-```latex +render
-\[ f 4 \Longrightarrow  8 \]
+npm --version
 ```
 <!-- reset_layout -->
 <!-- end_slide -->
+
+### Elm
+Choose your os from:
+https://guide.elm-lang.org/install/elm
+
+Verify your installation with the command:
+```bash
+elm
+```
+<!-- end_slide -->
+
+### Editor integrarion
+Choose your editor and follow the instructions at:
+https://github.com/elm/editor-plugins
+<!-- end_slide -->
+
+### Elm tooling
+Run the command:
+```bash
+npm install -g elm-test elm-format
+```
