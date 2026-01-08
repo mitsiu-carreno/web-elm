@@ -1,0 +1,293 @@
+---
+theme:
+    override:
+        code:
+            theme_name: railsEnvy
+        default:
+            colors:
+                background: "10141c"
+---
+
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+<!-- jump_to_middle -->
+# **Functions**       
+
+Mitsiu Alejandro Carreño Sarabia
+<!-- column: 1 -->
+<!-- jump_to_middle -->
+
+<!-- reset_layout -->
+<!-- end_slide -->
+Agenda
+===
+├── Course changes   
+├── Recap   
+├── Functions      
+├── Local project      
+├── Exercises     
+└── Instalation
+<!-- end_slide -->
+<!-- jump_to_middle -->
+# Course changes
+<!-- end_slide -->
+# Course changes
+- 1st Partial = 30%
+- - Class exercise / Homework = 10%
+- - Theorical evaluation - Functional paradigm = 20%
+- - Theorical evaluation - HTML = 20%
+- - Practical evaluation - Functional paradigm (paper based, NO computer!) = 25%
+- - Practical evaluation - HTML (paper based, NO computer!) = 25%
+<!-- pause -->
+- 2nd Partial = 30%
+- - Class exercise / Homework = 10%
+- - Theorical evaluation = 40%
+- - Practical evaluation (`maybe in` computer) = 50%
+<!-- pause -->
+- 3rd Partial = 40%
+- - `Theorical evaluation` - Client-Server = `30%`
+- - `Theorical evaluation` - side effects = `30%`
+- - Practical evaluation (`in` computer) = `40%`
+
+<!-- end_slide -->
+<!-- jump_to_middle -->
+# Recap
+<!-- end_slide -->
+# Recap 
+- What is an expression?
+<!-- pause -->
+- What is a value?
+<!-- pause -->
+- What does this simbol means?
+```latex +render
+\[ \Longrightarrow \]
+```
+<!-- pause -->
+- Values are expressions?
+<!-- pause -->
+- Expressions are values?
+<!-- pause -->
+- What is imperative programming?
+<!-- pause -->
+- What is state in computer science?
+<!-- pause -->
+- Which primitive data types exist in elm?
+<!-- pause -->
+- Exemplify 3 non-Int values
+<!-- pause -->
+- Which conditions does the (+) operator has? 
+<!-- end_slide -->
+
+# Variables
+In elm we can create variables just by giving a name and binding a value:
+```elm
+myName = "Mitsiu"
+```
+Elm response is:
+<!-- new_line -->
+Mitsiu : String
+<!-- new_line -->
+But let's look what happens if we try with a numerical value
+<!-- end_slide -->
+## Data types & operators
+Elm is unable to determine "age" type with certainty, it can be:
+- A float that happens to have no decimal
+- An integer
+
+Let's improve our communication hability:
+```elm +line_numbers
+age : Int
+age = 32
+```
+
+Line 1 is a type annotation it help's auto-document our code and clears all ambiguity about our true intent.
+
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+### Functions       
+<!-- end_slide -->
+
+### Functions
+In math we find:
+
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render +width:35%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+<!-- pause -->
+- f is the name of the function
+- f(x) the function f has an input x 
+- = 2 * x describe what the function does
+<!-- pause -->
+<!-- column: 1 -->
+![](./assets/gviz/domainRange.png)
+<!-- reset_layout -->
+<!-- end_slide -->
+### Functions & Data types
+Let's dig deeper into our function
+
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render +width:35%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+- f is the name of the function
+- f(x) the function f has an input x 
+- = 2 * x describe what the function does
+<!-- pause -->
+<!-- column: 1 -->
+The typing rule for **\*** is:
+```latex +render +width:50%
+\begin{align}
+e1 * e2 &: number \\
+if \\
+e1 &: number \\
+and \\
+e2 &: number
+\end{align}
+```
+<!-- reset_layout -->
+What can be inferred about the input and output of our function f?
+<!-- end_slide -->
+
+### Functions definition & Data types
+```latex +render +width:18%
+\begin{align}
+f(x) = 2 * x
+\end{align}
+```
+Let's start to code our first function in elm
+First our type annotation
+```elm +line_numbers
+-- This is an inline comment, below is a type annotation
+f : number -> number
+```
+The function parameter has type number and the function returns a number
+<!-- pause -->
+```elm +line_numbers
+f : number -> number
+f x = 
+    -- This is the function body
+    2 * x
+```
+<!-- end_slide -->
+### Function inputs and outputs
+In the functional paradigm `all functions must receive an input and return an expression` 
+```elm +line_numbers {2}
+-- The function f receives a number and produces a number
+f : number -> number
+f x = 
+    2 * x
+```
+
+Our type annotation describe:
+- The function is called "f"
+<!-- pause -->
+- Functions are expressions and they have a type ":"
+<!-- pause -->
+- List of inputs "number" separated by "->"
+<!-- pause -->
+- The final type is the function output type "number"
+<!-- end_slide -->
+
+### Function application
+To use the functions we just defined, we have to `apply` it. 
+1. We specify the function to apply by it's name
+2. We have to provide a value for the input "x"
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```elm +line_numbers
+-- Function definition
+f : number -> number
+f x = 
+    2 * x
+
+-- Function application
+f 4
+```
+<!-- column: 1 -->
+So we would have that 
+```latex +render
+\[ f 4 \Longrightarrow  8 \]
+```
+<!-- reset_layout -->
+<!-- end_slide -->
+<!-- jump_to_middle -->
+##### First project
+<!-- end_slide -->
+##### First project
+Let's create our first elm project.
+1. Create a folder to store all our exercies and homeworks (for example C:\Documents\web\)
+2. In the previous folder create a new folder for todays exercise (Ex1-functions)
+3. Open a terminal in that folder
+```bash
+pwd
+cd C:\Documents\web\Ex1-functions
+```
+4. Once you are in the correct folder run the command:
+```bash
+elm init
+# Accept the following quesitons
+```
+<!-- end_slide -->
+##### Elm init
+
+`elm init` is the command to bootstrap an elm project, it creates:
+1. The file "elm.json":
+- - elm.json is the file describing all libraries required for our project to run.
+2. The folder "src" 
+- - The folder to write our code
+<!-- end_slide -->
+##### Coding
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+Let's create a file "Helper.elm" in the "src" folder.
+```elm
+module Helper exposing (..)
+
+double : number -> number
+double x =
+    x * 2
+
+```
+<!-- pause -->
+<!-- column: 1 -->
+Let's make sure our terminal is at "Ex1-functions" (pwd)
+```bash
+pwd
+elm repl
+```
+REPL stands for Read Eval Print Loop
+```bash
+import Helper
+
+Helper.double
+
+Helper.double 4
+
+:exit
+```
+
+<!-- reset_layout -->
+<!-- end_slide -->
+##### More functions
+1. A new function square that takes a number and square's it (x^2)
+2. A new function in Helper.elm called Greet so that it receives a String name and return "Hello " + name
+3. Int -> Bool Todo
+<!-- end_slide -->
+```latex +render
+$$
+1+(-1)^n=\begin{cases}
+			0, & \text{if $n$ odd}\\
+            2, & \text{otherwise}
+		 \end{cases}
+$$
+```
+---./assets/gviz/dataTypes.png)
+
