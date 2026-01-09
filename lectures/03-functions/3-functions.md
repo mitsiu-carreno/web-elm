@@ -24,12 +24,14 @@ Agenda
 ├── Course changes   
 ├── Recap   
 ├── Functions      
-├── Local project      
-├── Exercises     
-└── Instalation
+├── First project      
+├── If    
+├── Case    
+└── Excersices
+
 <!-- end_slide -->
 <!-- jump_to_middle -->
-# Course changes
+# Recap
 <!-- end_slide -->
 # Course changes
 - 1st Partial = 30%
@@ -49,9 +51,6 @@ Agenda
 - - `Theorical evaluation` - side effects = `30%`
 - - Practical evaluation (`in` computer) = `40%`
 
-<!-- end_slide -->
-<!-- jump_to_middle -->
-# Recap
 <!-- end_slide -->
 # Recap 
 - What is an expression?
@@ -78,7 +77,10 @@ Agenda
 - Which conditions does the (+) operator has? 
 <!-- end_slide -->
 
-# Variables
+<!-- jump_to_middle -->
+## Functions       
+<!-- end_slide -->
+## Variables
 In elm we can create variables just by giving a name and binding a value:
 ```elm
 myName = "Mitsiu"
@@ -104,11 +106,8 @@ Line 1 is a type annotation it help's auto-document our code and clears all ambi
 
 <!-- end_slide -->
 
-<!-- jump_to_middle -->
-### Functions       
-<!-- end_slide -->
 
-### Functions
+## Functions
 In math we find:
 
 <!-- column_layout: [1,1] -->
@@ -127,7 +126,7 @@ f(x) = 2 * x
 ![](./assets/gviz/domainRange.png)
 <!-- reset_layout -->
 <!-- end_slide -->
-### Functions & Data types
+## Functions & Data types
 Let's dig deeper into our function
 
 <!-- column_layout: [1,1] -->
@@ -156,7 +155,7 @@ e2 &: number
 What can be inferred about the input and output of our function f?
 <!-- end_slide -->
 
-### Functions definition & Data types
+## Functions definition & Data types
 ```latex +render +width:18%
 \begin{align}
 f(x) = 2 * x
@@ -177,7 +176,7 @@ f x =
     2 * x
 ```
 <!-- end_slide -->
-### Function inputs and outputs
+## Function inputs and outputs
 In the functional paradigm `all functions must receive an input and return an expression` 
 ```elm +line_numbers {2}
 -- The function f receives a number and produces a number
@@ -196,7 +195,7 @@ Our type annotation describe:
 - The final type is the function output type "number"
 <!-- end_slide -->
 
-### Function application
+## Function application
 To use the functions we just defined, we have to `apply` it. 
 1. We specify the function to apply by it's name
 2. We have to provide a value for the input "x"
@@ -219,9 +218,9 @@ So we would have that
 <!-- reset_layout -->
 <!-- end_slide -->
 <!-- jump_to_middle -->
-##### First project
+### First project
 <!-- end_slide -->
-##### First project
+### First project
 Let's create our first elm project.
 1. Create a folder to store all our exercies and homeworks (for example C:\Documents\web\)
 2. In the previous folder create a new folder for todays exercise (Ex1-functions)
@@ -233,10 +232,10 @@ cd C:\Documents\web\Ex1-functions
 4. Once you are in the correct folder run the command:
 ```bash
 elm init
-# Accept the following quesitons
+# Accept the following questions
 ```
 <!-- end_slide -->
-##### Elm init
+### Elm init
 
 `elm init` is the command to bootstrap an elm project, it creates:
 1. The file "elm.json":
@@ -244,7 +243,7 @@ elm init
 2. The folder "src" 
 - - The folder to write our code
 <!-- end_slide -->
-##### Coding
+### Coding
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 Let's create a file "Helper.elm" in the "src" folder.
@@ -276,10 +275,47 @@ Helper.double 4
 
 <!-- reset_layout -->
 <!-- end_slide -->
-##### More functions
-1. A new function square that takes a number and square's it (x^2)
-2. A new function in Helper.elm called Greet so that it receives a String name and return "Hello " + name
-3. Int -> Bool Todo
+### More functions
+1. A new function "square" that takes a number and square's it (x^2)
+2. A new function in Helper.elm called "Greet" so that it receives a String name and return "Hello " + name
+3. A new function "above5 : number -> Bool" that evaluates if a given number is greater than (>) 5
+<!-- end_slide -->
+<!-- jump_to_middle -->
+#### If
+<!-- end_slide -->
+#### If
+The if expression has one of the following structures:
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render
+\begin{align}
+\text{if } e1 &: \text{Bool then} \\
+e2 &: a \\
+\text{else} \\
+e3 &: a
+\end{align}
+```
+<!-- column: 1 -->
+```latex +render +width:60%
+\begin{align}
+\text{if } e1 &: \text{Bool then} \\
+e2 &: a \\
+\text{else if }& e4 : \text{Bool then} \\
+e3 &: a \\
+\text{else} \\
+e5 &: a 
+\end{align}
+```
+
+<!-- reset_layout -->
+Like all other expressions, an `if expression returns a value` of type alpha
+
+In Elm `we must provide the else branch`.
+<!-- end_slide -->
+
+#### More functions
+1. A new function "isPositive" that get's an number and return a string either "Positive" o "Negative"
+2. A new function ""
 <!-- end_slide -->
 ```latex +render
 $$
