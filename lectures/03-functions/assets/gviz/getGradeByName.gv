@@ -1,5 +1,5 @@
 digraph G {
-  #dot -Tpng -Gsize=9,15\! -Gdpi=100  domainRange.gv -o domainRange.png && kitty icat domainRange.png
+  #dot -Tpng -Gsize=9,15\! -Gdpi=100  getGradeByName.gv -o getGradeByName.png && kitty icat getGradeByName.png
   graph [
     fontname = "Monserrat",
     fontcolor="white",
@@ -25,31 +25,27 @@ digraph G {
   ];
 
   subgraph cluster_1 {
-    d5 [label="-2"]
-    d4 [label="-1"]
-    d1 [label="0"]
-    d2 [label="1"]
-    d3 [label="2"]
+    _
+    Juan
+    Miguel
+    Fernanda
     style=rounded
     label = "Domain";
     labelloc="t"
   }
 
   subgraph cluster_2 {
-    r5 [label="-4"]
-    r4 [label="-2"]
-    r1 [label="0"]
-    r2 [label="2"]
-    r3 [label="4"]
+    0
+    9.3
+    8.7
+    9.4
     style=rounded
     label = "Range"
     labelloc="t"
   }
 
-  d1 -> r1;
-  d2 -> r2;
-  d3 -> r3;
-  d4 -> r4;
-  d5 -> r5;
-  #{ rank = same; c0, c1, c2, c3; }
+  Fernanda -> 9.4
+  Miguel -> 8.7
+  Juan -> 9.3
+  _ -> 0
 }

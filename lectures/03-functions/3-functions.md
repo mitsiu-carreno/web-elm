@@ -86,18 +86,23 @@ In elm we can create variables just by giving a name and binding a value:
 myName = "Mitsiu"
 ```
 Elm response is:
-<!-- new_line -->
-Mitsiu : String
+Mitsiu : String    
 <!-- new_line -->
 But let's look what happens if we try with a numerical value
-<!-- end_slide -->
-## Data types & operators
+<!-- pause -->
 Elm is unable to determine "age" type with certainty, it can be:
 - A float that happens to have no decimal
 - An integer
+<!-- end_slide -->
+## Data types & operators
 
-Let's improve our communication hability:
+Let's improve our communication hability remember that to say that an expression e has type t we write:
+```latex +render
+\[ e : t \]
+```
+<!-- pause -->
 ```elm +line_numbers
+-- This is an inline comment, below is a type annotation
 age : Int
 age = 32
 ```
@@ -164,7 +169,7 @@ f(x) = 2 * x
 Let's start to code our first function in elm
 First our type annotation
 ```elm +line_numbers
--- This is an inline comment, below is a type annotation
+-- Functions also have type annotations
 f : number -> number
 ```
 The function parameter has type number and the function returns a number
@@ -188,9 +193,9 @@ f x =
 Our type annotation describe:
 - The function is called "f"
 <!-- pause -->
-- Functions are expressions and they have a type ":"
+- `Functions are values` and they have a type ":"
 <!-- pause -->
-- List of inputs "number" separated by "->"
+- List of input types "number" separated by "->"
 <!-- pause -->
 - The final type is the function output type "number"
 <!-- end_slide -->
@@ -248,6 +253,7 @@ elm init
 <!-- column: 0 -->
 Let's create a file "Helper.elm" in the "src" folder.
 ```elm
+-- File: Ex1-functions/src/Helper
 module Helper exposing (..)
 
 double : number -> number
@@ -277,7 +283,9 @@ Helper.double 4
 <!-- end_slide -->
 ### More functions
 1. A new function "square" that takes a number and square's it (x^2)
-2. A new function in Helper.elm called "Greet" so that it receives a String name and return "Hello " + name
+<!-- new_line -->
+2. A new function called "Greet" so that it receives a String name and return "Hello " + name
+<!-- new_line -->
 3. A new function "above5 : number -> Bool" that evaluates if a given number is greater than (>) 5
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -290,20 +298,20 @@ The if expression has one of the following structures:
 ```latex +render
 \begin{align}
 \text{if } e1 &: \text{Bool then} \\
-e2 &: a \\
+e2 &: \alpha \\
 \text{else} \\
-e3 &: a
+e3 &: \alpha
 \end{align}
 ```
 <!-- column: 1 -->
 ```latex +render +width:60%
 \begin{align}
 \text{if } e1 &: \text{Bool then} \\
-e2 &: a \\
-\text{else if }& e4 : \text{Bool then} \\
-e3 &: a \\
+e2 &: \alpha \\
+\text{else if }& e3 : \text{Bool then} \\
+e4 &: \alpha \\
 \text{else} \\
-e5 &: a 
+e5 &: \alpha 
 \end{align}
 ```
 
@@ -314,8 +322,62 @@ In Elm `we must provide the else branch`.
 <!-- end_slide -->
 
 #### More functions
-1. A new function "isPositive" that get's an number and return a string either "Positive" o "Negative"
-2. A new function ""
+1. A new function "ifBoolTranslate" that get's a Bool and return a String either "Positivo" or "Negativo"
+<!-- new_line -->
+2. A new function "ifNumberSign" that get's a number and return a string either "Positive", "Negative", "Neutral"
+<!-- new_line -->
+
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+##### Case
+<!-- end_slide -->
+
+##### Case expression
+Another usefull structure are case expressions:
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```latex +render
+\begin{align}
+\text{case } e1 &: \alpha \text{of} \\
+pat1 &: \alpha \text{->} \\
+& e2 : \beta
+\\
+pat2 &: \alpha \text{->} \\
+& e3 : \beta
+\end{align}
+```
+<!-- column: 1 -->
+Notice that all possible values of type alpha must be evaluated consider:
+```elm 
+caseExample : Int -> Bool
+caseExample num =
+    case num of
+        3 ->
+            True
+```
+<!-- pause -->
+```elm
+        _ ->
+            False
+```
+
+<!-- reset_layout -->
+<!-- end_slide -->
+
+##### More functions
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+1. A new function "getNameById" that get's an Int and return a String
+
+![](./assets/gviz/getNameById.png)
+<!-- column: 1 -->
+2. A new function "getGradeByName" that get's a String and return a Float 
+
+![](./assets/gviz/getGradeByName.png)
+<!-- reset_layout -->
+<!-- new_line -->
+
 <!-- end_slide -->
 ```latex +render
 $$
@@ -327,3 +389,5 @@ $$
 ```
 ---./assets/gviz/dataTypes.png)
 
+##### Homework
+1. Create a github account with your "alumnos.upa.edu.mx" email
