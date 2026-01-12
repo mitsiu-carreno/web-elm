@@ -27,7 +27,7 @@ Agenda
 ├── First project      
 ├── If    
 ├── Case    
-└── Excersices
+└── Homework
 
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -379,15 +379,9 @@ caseExample num =
 <!-- new_line -->
 
 <!-- end_slide -->
-```latex +render
-$$
-1+(-1)^n=\begin{cases}
-			0, & \text{if $n$ odd}\\
-            2, & \text{otherwise}
-		 \end{cases}
-$$
-```
----./assets/gviz/dataTypes.png)
+<!-- jump_to_middle -->
+###### Homework
+<!-- end_slide -->
 
-##### Homework
+###### Homework
 1. Create a github account with your "alumnos.upa.edu.mx" email
