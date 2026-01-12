@@ -21,7 +21,6 @@ Mitsiu Alejandro Carreño Sarabia
 <!-- end_slide -->
 Agenda
 ===
-├── Course changes   
 ├── Recap   
 ├── Functions      
 ├── First project      
@@ -378,6 +377,40 @@ caseExample num =
 <!-- reset_layout -->
 <!-- new_line -->
 
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+###### Formatter and clean code
+<!-- end_slide -->
+###### Formatter and clean code
+Let's standarize how we write code:
+```bash
+# Check if our code complies the standarized elm rules:
+elm-format src/ --validate
+# Apply the format rules and modify our files:
+elm-format src/ 
+```
+<!-- pause -->
+Check we provide all annotations:
+```bash
+elm-review \
+--template jfmengels/elm-review-common/example \
+--rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
+```
+
+<!-- end_slide -->
+###### Formatter and clean code
+Verify our code compiles and is valid:
+```bash
+elm make src/*
+```
+<!-- new_line -->
+<!-- pause -->
+<!-- new_line -->
+Check unit testing if present:
+```bash
+elm-test
+```
 <!-- end_slide -->
 <!-- jump_to_middle -->
 ###### Homework
