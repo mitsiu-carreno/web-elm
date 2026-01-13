@@ -123,10 +123,7 @@ nothing to commit, working tree clean
 
 This output singals that no changes has been performed.
 
-Let's peek into src/Helper.elm and add "double x = 2 * x" at the bottom.
-```bash
-$ echo "double x = 2 * x" >> src/Helper.elm  # Modify src/Helper.elm (tracked file)
-```
+Let's modify src/Helper.elm and add "double x = 2 * x" at the bottom.
 <!-- end_slide -->
 ### Check changes
 ```bash {all|1|2-8|2,4-5|8}
@@ -165,7 +162,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 - **Index/Staging** => At this stage git start to `track files and modifications locally` 
 
 ```bash {all|1|4-8|5,7-8|6|all}
-$ git add src/Helper.elm src/new_unused_file
+$ git add src/Helper.elm
 
 $ git status
 On branch main
@@ -194,9 +191,11 @@ All work in the working directory remains unchanged.
 ### Adding commits
 - **Commit** => Command to `capture the current state in (index/stage)`
 - **HEAD** => `Pointer` to the latest commit
-
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
 ![](./assets/head.gif)
-
+<!-- column: 1 -->
+![](./assets/bodydeck.gif)
 <!--end_slide -->
 
 ### From HEAD to remote 
@@ -227,9 +226,6 @@ To github.com:MACS-KINCAID/E1-elm-functions.git
 <!-- column_layout: [2,3] -->
 <!-- column: 0 -->
 ```bash +line_numbers
-# Create local repo
-git init
-
 # Clone remote repo
 git clone <URL>
 
@@ -261,17 +257,22 @@ git push origin <branch>
 ##### Remote
 <!--end_slide -->
 
-##### CI tests
+##### CI tests 
+On each push a set of test start to evaluate the quality of your code.     
+For more details click on the ❌
 ![](./assets/git-ci.png)
 <!-- end_slide -->
 ##### CI tests
+Click on "details"
 ![](./assets/git-ci-fail.png)
 <!-- end_slide -->
 ##### Fail detail
+My example is pretty basic, my file is mostly empty, that's the error:
 ![](./assets/git-ci-fail-detail.png)
 <!-- end_slide -->
 
 ##### CI commands
+These are the four commands that are evaluated, you can run them locally. To solve the errors faster.
 ```bash
 elm-format src/ --validate
 
@@ -283,3 +284,5 @@ elm make src/*
 
 elm-test
 ```
+
+This is your first class exercise/homework.
