@@ -244,10 +244,10 @@ git add <file1> <file2>
 git commit -m'<Descrip de cambios>'
 
 # Download remote changes 
-git pull origin <branch>
+git pull origin main
 
 # Update remote changes with local changes
-git push origin <branch>
+git push origin main
 ```
 
 *origin => remote name
