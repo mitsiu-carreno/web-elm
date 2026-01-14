@@ -391,12 +391,15 @@ Powershell script execution fix:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 3. Reopen your terminal
-
+<!-- column_layout: [1,1]-->
+<!-- column: 0 -->
 VsCode
 1. File -> Preferences -> Settings 
 2. Search settings: "@lang:elm" 
 3. Editor: Format On Save
-
+<!-- column: 1 -->
+Issues on `import Helper` and elm/browser/tarball?
+Try turning off your firewall
 <!--end_slide -->
 
 
