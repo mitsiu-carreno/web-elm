@@ -26,6 +26,8 @@ Agenda
 ├── First project      
 ├── If    
 ├── Case    
+├── Microslop      
+├── Formatter & clean code    
 └── Homework
 
 <!-- end_slide -->
@@ -378,6 +380,25 @@ caseExample num =
 <!-- new_line -->
 
 <!-- end_slide -->
+<!-- jump_to_middle -->
+###### Microslop
+<!-- end_slide -->
+###### Microslop
+Powershell script execution fix:
+1. Open PowerShell with Run as Administrator.
+2. Execute
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+3. Reopen your terminal
+
+VsCode
+1. File -> Preferences -> Settings 
+2. Search settings: "@lang:elm" 
+3. Editor: Format On Save
+
+<!--end_slide -->
+
 
 <!-- jump_to_middle -->
 ###### Formatter and clean code
