@@ -477,4 +477,22 @@ fib n =
 ### Footnote on recursion
 <!-- end_slide -->
 ### Footnote on recursion
-- Be aware that recursion in the context of functional programming 
+Be aware that recursion in the context of functional programming is usefull but it has some risks.
+<!-- new_line -->
+- Recursion can lead to `infinite loops` if our base case isn't set properlly.
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+#### Exercise Padovan
+<!-- end_slide -->
+#### Exercise Padovan
+![](./assets/padovan.png)
+<!-- end_slide -->
+#### Exercise Padovan
+[1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86, 114, 151, 200, 265,]
+```latex +render
+\begin{align}
+P(n) = P(n-2) + P(n-3) \text{for} n\geq3, with \\
+P(0) = P(1) = P(2) = 1
+\end{align} 
+```
