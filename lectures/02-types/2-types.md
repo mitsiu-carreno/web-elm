@@ -265,5 +265,5 @@ https://github.com/elm/editor-plugins
 ### Elm tooling
 Run the command:
 ```bash
-npm install -g elm-test elm-format
+npm install -g elm-test elm-format elm-review
 ```
