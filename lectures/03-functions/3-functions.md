@@ -409,28 +409,33 @@ Try turning off your firewall
 ###### Formatter and clean code
 Let's standarize how we write code:
 ```bash
+# Linux & Windows
 # Check if our code complies the standarized elm rules:
 elm-format src/ --validate
 # Apply the format rules and modify our files:
 elm-format src/ 
 ```
 <!-- pause -->
-Check we provide all annotations:
+Verify our code compiles and is valid:
 ```bash
-elm-review \
---template jfmengels/elm-review-common/example \
---rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
+# Linux
+elm make src/*
+# Windows
+elm make src/<file>.elm
 ```
 
 <!-- end_slide -->
 ###### Formatter and clean code
-Verify our code compiles and is valid:
+Check we provide all annotations:
 ```bash
-elm make src/*
+# Linux
+elm-review --template jfmengels/elm-review-common/example --rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
+# Windows Powershell
+elm-review --template jfmengels/elm-review-common/example --rules "NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn"
+# Windows cmd
+elm-review --template jfmengels/elm-review-common/example --rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
 ```
-<!-- new_line -->
 <!-- pause -->
-<!-- new_line -->
 Check unit testing if present:
 ```bash
 elm-test
