@@ -72,7 +72,7 @@ Start an elm repl session?
 <!-- pause -->
 - elm repl     
 <!-- new_line -->
-Stage changes in git?
+Track changes in git?
 <!-- pause -->
 - git add \<file\>    
 <!-- column: 1 -->
@@ -125,7 +125,7 @@ fact(5) &= 1 \times 2 \times 3 \times 4 \times 5 \equal 120 \\
 fact(4) &= 1 \times 2 \times 3 \times 4 \equal 24 \\
 fact(3) &= 1 \times 2 \times 3 \equal 6 \\
 ... \\
-fact(0) &= 1 
+fact(1) &= 1 
 \end{align} 
 ```
 <!-- end_slide -->
@@ -139,7 +139,7 @@ fact(5) &= 1 \times 2 \times 3 \times 4 \times 5 \equal 120 \\
 fact(4) &= 1 \times 2 \times 3 \times 4 \equal 24 \\
 fact(3) &= 1 \times 2 \times 3 \equal 6 \\
 ... \\
-fact(0) &= 1 
+fact(1) &= 1 
 \end{align} 
 ```
 <!-- column: 1 -->
@@ -151,7 +151,7 @@ fact(5) &= fact(4) \times 5 \equal 120 \\
 fact(4) &= 1 \times 2 \times 3 \times 4 \equal 24 \\
 fact(3) &= 1 \times 2 \times 3 \equal 6 \\
 ... \\
-fact(0) &= 1 
+fact(1) &= 1 
 \end{align} 
 ```
 <!-- end_slide -->
@@ -165,16 +165,16 @@ fact(5) &= fact(4) \times 5 \equal 120 \\
 fact(4) &= fact(3) \times 4 \equal 24 \\
 fact(3) &= fact(2) \times 3 \equal 6 \\
 fact(2) &= fact(1) \times 2 \equal 2 \\
-fact(1) &= fact(0) \times 1 \equal 2 \\
-fact(0) &= 1 
+fact(1) &= 1 
+
 \end{align} 
 ```
 <!-- column: 1 -->
 We can summarize this behaviour as, for all natural numbers n
 ```latex +render 
 \begin{align}
-\text{if n=0 then } \\
-fact(0) &= 1 \\
+\text{if n=1 then } \\
+fact(1) &= 1 \\
 \text{else} \\
 fact(n) &= fact(n-1) \times n \\
 \end{align}
@@ -186,8 +186,8 @@ fact(n) &= fact(n-1) \times n \\
 We can summarize this behaviour as, for all natural numbers n
 ```latex +render 
 \begin{align}
-\text{if n=0 then } \\
-fact(0) &= 1 \\
+\text{if n=1 then } \\
+fact(1) &= 1 \\
 \text{else} \\
 fact(n) &= fact(n-1) \times n \\
 \end{align}
@@ -197,7 +197,7 @@ We can express this notion using case notation as:
 ```latex +render
 $$
 fact(n)=\begin{cases}
-    1, & \text{if} n=0 \\
+    1, & \text{if} n=1 \\
     n * fact(n-1), & \text{if } n > 0
    \end{cases}
 $$
@@ -209,7 +209,7 @@ $$
 ```latex +render
 $$
 fact(n)=\begin{cases}
-    1, & \text{if} n=0 \\
+    1, & \text{if} n=1 \\
     n * fact(n-1), & \text{if } n > 0
    \end{cases}
 $$
@@ -228,7 +228,7 @@ factorial n =
     -- Requires n >= 0
     -- Ensures factorial of n
     case n of
-        0 ->
+        1 ->
             1
 ```
 <!-- end_slide -->
@@ -239,7 +239,7 @@ factorial n =
 ```latex +render
 $$
 fact(n)=\begin{cases}
-    1, & \text{if} n=0 \\
+    1, & \text{if} n=1 \\
     n * fact(n-1), & \text{if } n > 0
    \end{cases}
 $$
@@ -251,7 +251,7 @@ factorial n =
     -- Requires n >= 0
     -- Ensures factorial of n
     case n of
-        0 ->
+        1 ->
             1
 ```
 <!-- column: 1 -->
@@ -271,7 +271,7 @@ fact(5) &= fact(4) \times 5 \equal 120 \\
 ```latex +render
 $$
 fact(n)=\begin{cases}
-    1, & \text{if} n=0 \\
+    1, & \text{if} n=1 \\
     n * fact(n-1), & \text{if } n > 0
    \end{cases}
 $$
@@ -293,11 +293,75 @@ factorial n =
     -- Requires n >= 0
     -- Ensures factorial of n
     case n of
-        0 ->
+        1 ->
             1
         _ ->
             factorial(n-1) * n
 ```
+<!-- end_slide -->
+
+## Coding factorial
+<!-- column_layout: [3,4] -->
+<!-- column: 0 -->
+```elm
+factorial : Int -> Int
+factorial n =
+    -- Requires n >= 0
+    -- Ensures factorial of n
+    case n of
+        1 ->
+            1
+        _ ->
+            factorial(n-1) * n
+```
+Let's trace the factorial 5 application:
+<!-- column: 1 -->
+<!-- pause -->
+```latex +render +width:61%
+\begin{align}
+fact(5) &= fact(4) \times 5
+\end{align} 
+```
+<!-- pause -->
+```latex +render +width:61%
+\begin{align}
+fact(4) &= fact(3) \times 4 
+\end{align} 
+```
+<!-- pause -->
+```latex +render 
+\begin{align}
+fact(3) &= fact(2) \times 3 \\ 
+fact(2) &= fact(1) \times 2 \\
+fact(1) &= 1 
+\end{align} 
+```
+<!-- end_slide -->
+
+## Coding factorial
+<!-- column_layout: [3,4] -->
+<!-- column: 0 -->
+```latex +render 
+\begin{align}
+fact(5) &= fact(4) \times 5 \\
+fact(4) &= fact(3) \times 4 \\
+fact(3) &= fact(2) \times 3 \\ 
+fact(2) &= fact(1) \times 2 \\
+fact(1) &= 1 
+\end{align} 
+```
+<!-- column: 1 -->
+<!-- pause -->
+```latex +render 
+\begin{align}
+fact(2) = 1 \times 2 \\
+fact(3) = 1 \times 2 \times 3 \\
+fact(4) = 1 \times 2 \times 3 \times 4 \\
+fact(5) = 1 \times 2 \times 3 \times 4 \times 5 \\
+fact(5) \Longrightarrow 120
+\end{align} 
+```
+
 <!-- end_slide -->
 
 ## Fibonacci
@@ -483,7 +547,7 @@ Be aware that recursion in the context of functional programming is usefull but 
 <!-- end_slide -->
 
 <!-- jump_to_middle -->
-#### Exercise Padovan
+#### Exercises
 <!-- end_slide -->
 #### Exercise Padovan
 ![](./assets/padovan.png)
@@ -495,4 +559,17 @@ Be aware that recursion in the context of functional programming is usefull but 
 P(n) = P(n-2) + P(n-3) \text{for} n\geq3, with \\
 P(0) = P(1) = P(2) = 1
 \end{align} 
+```
+<!-- end_slide -->
+#### Exercise Pow
+Create a function to calculate any:
+```latex +render
+n ^ p Given : \\
+n ^ 3 = n * n * n
+```
+This will require two parameters:
+```elm
+powerOf : Int -> Int -> Int
+powerOf number power =
+    ...
 ```
