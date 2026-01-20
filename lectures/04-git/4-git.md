@@ -34,10 +34,20 @@ Agenda
 # Installation
 <!--end_slide -->
 
-# Installation
-Install git from the following link, follow the steps depending on your OS.
+# Installation https://git-scm.com/install/
 
-[](https://git-scm.com/install/)
+Important settings:    
+Components -> Default     
+Editor -> Visual Studio Code as Git's default editor   
+Initial branch -> Override the default branch "main"    
+Path env -> Git from the command line & 3rd party    
+SSH -> Use bundled ssh     
+Https -> Native Windows Secure Channel     
+Line endings -> Checkout windows, commit unix    
+Git bash -> MinTTY     
+Git pull -> Fast forward or Merge     
+Credentials -> Git Credential Manager    
+Catching -> Enable catching    
 
 Verify the installation with:
 ```bash
@@ -273,27 +283,40 @@ My example is pretty basic, my file is mostly empty, that's the error:
 
 ##### CI commands
 These are the four commands that are evaluated, you can run them locally. To solve the errors faster.
-- Validate format
 ```bash
+# Linux & Windows
+# Check if our code complies the standarized elm rules:
 elm-format src/ --validate
+# Apply the format rules and modify our files:
+elm-format src/ 
 ```
-- Run checks
+<!-- pause -->
+Verify our code compiles and is valid:
 ```bash
-elm-review \
---template jfmengels/elm-review-common/example \
---rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
+# Linux
+elm make src/*
+# Windows
+elm make src/<file>.elm
 ```
+
 <!-- end_slide -->
 
 ##### CI commands
-These are the four commands that are evaluated, you can run them locally. To solve the errors faster.
-- Build
+Check we provide all annotations:
 ```bash
-elm make src/*
+# Linux
+elm-review --template jfmengels/elm-review-common/example --rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
+# Windows Powershell
+elm-review --template jfmengels/elm-review-common/example --rules "NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn"
+# Windows cmd
+elm-review --template jfmengels/elm-review-common/example --rules NoMissingTypeAnnotation,NoMissingTypeAnnotationInLetIn
 ```
-- Run tests
+<!-- pause -->
+Check unit testing if present:
 ```bash
 elm-test
 ```
-
+<!-- end_slide -->
+##### CI commands
+The commands are also in your class exercise/homework readme.     
 This is your first class exercise/homework.
