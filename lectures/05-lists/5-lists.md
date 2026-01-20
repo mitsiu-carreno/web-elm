@@ -7,23 +7,23 @@ theme:
             colors:
                 background: "10141c"
 ---
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [1,2] -->
 <!-- column: 0 -->
 <!-- jump_to_middle -->
-# More types
+# Lists
 Mitsiu Alejandro Carreño Sarabia
 <!-- column: 1 -->
-<!-- jump_to_middle -->
-![](./assets/structure.png)
+<!-- new_line -->
+<!-- new_line -->
+![](./assets/padovan.jpg)
 
 <!-- end_slide -->
 Agenda
 ===
 ├── Recap   
 ├── Lists      
-├── Map     
-├── Custom types     
-└── Homework
+├── Loops      
+└── Map
 
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -165,22 +165,30 @@ The output is of type List alpha (last arrow)
 
 <!-- end_slide -->
 ## Lists
-We can cons multiple values:
+<!--column_layout: [3,4] -->
+<!-- column: 0 -->
+When we write a list:
+
+We are actually doing this:
+
+Which will be right-associative:
+
+<!-- column: 1 -->
 ```elm
-1 :: 2 :: 3 :: [] : List Int
+[16, 5, 31, 9] : List Int
 ```
-Which will be right-associative
 ```elm
-1 :: (2 :: (3 :: [])) : List Int
+16 :: 5 :: 31 :: 9:: [] : List Int
 ```
-Which is the same as:
 ```elm
-[1, 2, 3] : List Int
+16 :: (5 :: (31 :: (9 ::[]))) : List Int
 ```
+<!-- reset_layout -->
+![](./assets/list-recurs.png)
 <!-- end_slide -->
 ## Lists & Cases
 We just saw how to construct Lists, now lets learn how to deconstruct them, with cases.     
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [2,3,2] -->
 <!-- column: 0 -->
 Remember that cases have the notation:
 ```latex +render
@@ -196,13 +204,14 @@ pat2 &: \alpha \text{->} \\
 <!-- column: 1 -->
 The pat stands for `pattern` which means we can `case on structures` rather than only on values:
 ```elm
-case [1,2,3] of
+case [1,2,3,4,5] of
     [] ->
         []
     x :: xs ->
         [x]
 ```
-
+<!-- column: 2 -->
+![](./assets/list-h-t.png)
 <!-- end_slide -->
 ## List
 Let's make a quick function that uses the cons operator:
@@ -216,14 +225,119 @@ headAdder 1.1 [1.2, 1.3]
 ```
 <!-- end_slide -->
 ## List exercises
-1. Make a function "isEmpty" that returns if a given list is empty or not (Bool).
-2. Make a function "head" that returns the first element in a non-empty list.
+1. Make a function "isEmpty" that returns if a given String List is empty or not (Bool).
+2. Make a function "head" that returns the first Int in a Int list of -100 if it's an empty list.
 
 <!-- end_slide -->
+<!-- column_layout: [1,3] -->
+<!-- column: 0 -->
 <!-- jump_to_middle -->
-### Map 
+### Loop
+<!-- column: 1 -->
+<!-- new_line -->
+<!-- new_line -->
+<!-- new_line -->
+![](./assets/loops.png)
 <!-- end_slide -->
-### Map 
+### Our old ways
+Remember how in imperative contexts we have:
+<!-- column_layout: [3,4] -->
+<!-- column: 0 -->
+```java +line_numbers
+int x = 0;
+for (int i = 0; i < 5; i++){
+    x = x + 1;  
+}
+```
+<!-- column: 1 -->
+- We agreed that x = x + 1 on line 3 is `no bueno` because we modify the value
+<!-- pause -->
+- By the same principle i++ (i = i + 1) on line 2 must be gone
+<!-- reset_layout -->
+<!-- pause -->
+- Actually the whole concept of a for loop or while loop needs to be gone, so how is this done in functional programming?
+
+<!-- end_slide -->
+### Length
+Let's use our new knowledge on lists to calculate the length of a given list
+What's our type annotation?
+<!-- pause --> 
+```elm
+length : List Int -> Int
+```
+We mentioned our list can be either one of two things...
+<!-- pause -->
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] ->
+        x :: xs ->
+```
+
+<!-- end_slide -->
+### Length
+<!-- column_layout: [1,2] -->
+<!-- column: 0 -->
+Current progress:
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] ->
+        x :: xs ->
+```
+<!-- column: 1 -->
+- If our list is empty (nil) what's the length?
+<!-- pause -->
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] -> 0
+        x :: xs -> 
+```
+
+<!-- end_slide -->
+### Length
+<!-- column_layout: [1,2] -->
+<!-- column: 0 -->
+Current progress:
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] -> 0
+        x :: xs -> 
+```
+<!-- column: 1 -->
+- If our list is not empty (x::xs) what should we do? How does it affect our length calculation?
+<!-- pause -->
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] -> 0
+        x :: xs -> 1 + ??
+```
+At ?? do we care about x or xs?
+<!-- pause -->
+We dont care about x because we already encoded it's value as 1 + something
+<!-- end_slide -->
+### Length 
+If we know that the list is not-empty, we add one and try to get the length of the rest of the list.
+```elm
+length : List Int -> Int
+length l =
+    case l of
+        [] -> 0
+        x :: xs -> 1 + length xs
+```
+<!-- end_slide -->
+<!-- jump_to_middle -->
+#### Map 
+<!-- end_slide -->
+#### Map 
 Map is our first higher order function, it's one powerfull function that allows us to make a transformation to each element in our list.
 Let's start by analizing it's type:
 ```elm
@@ -244,7 +358,7 @@ Which type is the output?
 
 What does the parameter `(a -> b)` mean?
 <!-- end_slide -->
-### Map 
+#### Map 
 Let's review our understanding with `(a -> b)`:
 If I say
 ```elm
@@ -271,7 +385,7 @@ always2 'a'
 always2 False
 ```
 <!-- end_slide -->
-### Map 
+#### Map 
 Let's track back into map.
 ```elm
 List.map
@@ -283,7 +397,7 @@ This is a powerfull concept, functions are values, and as such we can pass them 
 
 This notion has been adopted by a lot of programming paradigms & languages because is quite usefull.
 <!-- end_slide -->
-### Map 
+#### Map 
 <!-- column_layout: [2,3] -->
 <!-- column: 0 -->
 Let's make a simple function `a->b` with two different types.
@@ -316,7 +430,7 @@ List.map
 ```
 Any idea on what List.map may do?
 <!-- end_slide -->
-### Map
+#### Map
 1. (a -> b) = Performs a transformation on input a's and produces b's
 2. List a = The transformation will be applied to each element in a list
 ```elm
@@ -332,89 +446,7 @@ listA = [-2,-1,0,1,2]
 List.map cBool listA -- => [True, True, False, True, True]
 ```
 <!-- end_slide -->
-### Map Exercises
-1. Create a function "canBuyAlcohol" that given an array of ages return True or False if is able to buy alcohol
+#### Map Exercises
+1. Create a function "canBuyAlcohol" that given an array of ages return True or False if is able to buy alcohol (+17)
 2. Create a function "allUpperCase" that given an array of names return the same names in uppercase (String.toUpper) 
 3. Create a function "approveCourse" that given an array of grades (Float) return if it approve or not the course.
-<!-- end_slide -->
-<!-- jump_to_middle -->
-#### Custom types
-<!-- end_slide -->
-#### Custom types
-Let's say we want to track if a student passed or failed the course, which data type should we use?
-<!-- pause -->
-Did I guess your solution?
-```elm
-passed : Bool
-```
-There's a little issue with using Bool, it's more limited than what we need.
-Right now did you pass this course? Should I register False?
-```elm
-passed : Bool
-passed = False
-```
-That doesn't represent reallity, you haven't passed the course, yet you haven't failed the course either!
-<!-- end_slide -->
-#### Custom types
-The current state about your grade is "pending" but a Bool only allows us two possible states.     
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-Which data type should we use? 
-<!-- pause -->
-```elm
-passed : String
-passed = "Pending"
-
-shouldPay : String -> Bool
-shouldPay passed = 
-    case passed of
-        "approved" -> False
-        "failed" -> True
-        "pending" -> False
-        _ -> False
-```
-<!-- pause -->
-<!-- column: 1 -->
-This solution has two big disadvantages:
-1. We have to case on _ because there are many `other possible strings` even if they are not real passed values
-2. This code outputs that `no one should pay!
-<!-- end_slide -->
-#### Custom types
-Let's make our own data type:
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-```elm
-type GradeStatus 
-    = Approved
-    | Failed
-    | Pending
-
-passed : GradeStatus
-passed = Pending
-```
-<!-- column: 1 -->
-```elm
-shouldPay : GradeStatus -> Bool
-shouldPay passed = 
-    case passed of
-        Approved -> False
-        Failed -> True
-        Pending -> False
-```
-<!-- reset_layout -->
-Approved is a posible value of the data type GradeStatus.    
-Just like True is a possible value of the data type Bool.
-<!-- end_slide -->
-
-#### Custom types exercises
-1.0 Create a function "categorialGrade" that given a list of grades return the category gradeStatus (Approved | Failed | Pending) where any negative number is Pending    
-2.1 Create a type "plainStatus" (On-time | Boarding | Delayed | Cancelled)     
-2.2 Create a function "plainScheduleAction" that maps as follows:     
-![](./assets/gviz/plainSchedule.png)
-2.3 Create a function "airportAction" that given a list of plainStatus transform it into a list of strings with plainScheduleActions
-
-<!-- end_slide -->
-<!-- jump_to_middle -->
-##### Records 
-##### Maybe 
-
