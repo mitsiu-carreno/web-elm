@@ -1,0 +1,51 @@
+digraph G {
+  #dot -Tpng -Gsize=9,15\! -Gdpi=100  plainSchedule.gv -o plainSchedule.png && kitty icat plainSchedule.png
+  graph [
+    fontname = "Monserrat",
+    fontcolor="white",
+    #bgcolor="black",
+    bgcolor="transparent"
+    penwidth=1.5,
+    #newrank=true, # Permite alinear HEAD
+    rankdir="LR"
+    ranksep=1.3
+    splines=true
+    color=white
+  ];
+  node [
+    fontcolor="white",
+    fontname = "helvetica"
+    color="#37CDCB"
+    shape=plaintext
+  ];
+  edge [
+    fontcolor="white",
+    color="white"
+    fontname = "helvetica"
+  ];
+
+  subgraph cluster_1 {
+    "On-time"
+    Boarding
+    Delayed
+    Cancelled
+    style=rounded
+    label = "Domain";
+    labelloc="t"
+  }
+
+  subgraph cluster_2 {
+    esperar[label="\"Esperar\""]
+    boleto[label="\"Buscar boleto\""]
+    reembol[label="\"Pedir reembolso\""]
+    style=rounded
+    label = "Range"
+    labelloc="t"
+  }
+
+  Cancelled -> reembol
+  Delayed -> esperar
+  Boarding -> boleto
+  "On-time" -> esperar
+  #{ rank = same; c0, c1, c2, c3; }
+}
