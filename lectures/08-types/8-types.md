@@ -192,6 +192,7 @@ Just like True is a possible value of the data type Bool.
 <!-- column: 1 -->
 ![](./assets/gviz/plainSchedule.png)
 <!-- end_slide -->
+// piggiback type with payload?
 <!-- jump_to_middle -->
 ##### Records 
 <!-- end_slide -->
