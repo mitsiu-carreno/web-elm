@@ -24,6 +24,9 @@ Agenda
 ├── Recap   
 ├── Html elements      
 ├── Attributes     
+├── Elm    
+├── elm reactor     
+├── Challenge     
 └── Elm
 
 <!-- end_slide -->
@@ -47,7 +50,6 @@ double x =
 List.map double [1,2,3,4,5]
 ```
 <!-- column: 1 -->
-What does this function calculate?
 ```elm
 mystery : List Int -> Int -> Int
 mystery l acc =
@@ -61,7 +63,10 @@ mystery l acc =
                  else
                     acc
                 )
+mystery [1,2,3,4,5,4,3,2,1] 0
 ```
+What does this expression reduces to?
+What does mystery calculate?
 
 <!-- end_slide -->
 # Commands recap
@@ -193,7 +198,7 @@ Let's add the attribute class into any of our html elements and see what happens
 ### Elements and attributes
 Let's disect the following html code:
 ```html
-<a href="upa.edu.mx">My school</a>
+<a href="https://upa.edu.mx">My school</a>
 ```
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
@@ -216,13 +221,13 @@ Let's disect the following html code:
 - What are the attribute key and value?
 <!-- pause -->
 - - key = href       
-- - Value = upa.edu.mx 
+- - Value = https://upa.edu.mx 
 <!-- end_slide -->
 <!-- jump_to_middle -->
 #### Elm
 <!-- end_slide -->
 #### Elm
-1. Let's create a new elm project in our "Ex2-html" folder
+1. Let's create a new elm project in our "Ex2-html" folder (`elm init`)
 2. Create a file "Main.elm"
 ```elm
 module Main exposing (main)
@@ -294,11 +299,91 @@ main : Html msg
 main =
     Html.p 
         []
+```
+<!-- reset_layout -->
+<!-- end_slide -->
+#### Elm html
+```elm
+Html.p : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
+---
+Html.text : String -> Html.Html msg
+```
+<!-- pause -->
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```html
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>Web application</p>
+    </body>
+</html>
+```
+<!-- pause -->
+<!-- column: 1 -->
+```elm
+main : Html msg
+main =
+    Html.p 
+        []
         [ Html.text "Web applications"]
 ```
 <!-- reset_layout -->
 <!-- end_slide -->
 #### Elm html
+Final complete code:
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```html
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>Web application</p>
+    </body>
+</html>
+```
+<!-- column: 1 -->
+
+```elm
+module Main exposing (main)
+
+import Html
+import Html.Attributes
+
+main : Html msg
+main =
+    Html.p 
+        []
+        [ Html.text "Web applications" ]
+```
+<!-- reset_layout -->
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+##### elm reactor
+<!-- end_slide -->
+
+##### elm reactor
+Once our code is complete we can test it the regular way with:
+```bash
+elm repl
+import Main
+```
+We should get no errors! 
+Then we can proceed with:
+```bash
+elm reactor
+```
+And open a browser tab at `localhost:8000`     
+Navigate the file explorer to src/Main.elm
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+###### Challenge
+<!-- end_slide -->
+###### Challenge
 Are you able to produce the following html code in elm?
 ```elm
 <div>
