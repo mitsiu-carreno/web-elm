@@ -93,7 +93,16 @@ Enforce format rules on our code?
 - elm-format src/        
 <!-- reset_layout -->
 <!-- end_slide -->
-
+# Tokens recap
+<!-- column_layout: [2,3] -->
+<!-- column: 0 -->
+Mit-managed
+![](./assets/risk.png)
+<!-- pause -->
+<!-- column: 1 -->
+Self-managed
+![](./assets/monopoly.png)
+<!-- end_slide -->
 <!-- jump_to_middle -->
 ## Html
 <!-- end_slide -->
