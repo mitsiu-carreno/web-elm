@@ -24,10 +24,8 @@ Mitsiu Alejandro Carreño Sarabia
 Agenda
 ===
 ├── Recap   
-├── Lists      
-├── Loops      
-├── Map     
-├── Custom types     
+├── Records      
+├── Aliases      
 └── Homework
 
 <!-- end_slide -->
@@ -229,8 +227,8 @@ What does it output?
 - name : String
 - uType : String     
 
-2.3 Create a list of users (uType can be "Students" or "Professors")      
-2.4 Create a function "onlyStudents" that receives the list from point 2.3 and generates a String list with only the name of the "Students" (professors names are emptied) eg:
+2.3 Create a list of users (uType can be "Student" or "Professor")      
+2.4 Create a function "onlyStudents" that receives the list from point 2.3 and generates a String list with only the name of the "Student" (professors names are emptied) eg:
 - Input : [{name="Roberto", uType= "Student"}, {name="Mitsiu", uType="Professor"}]
 - Output: ["Roberto", ""]
 <!-- end_slide -->
@@ -274,7 +272,31 @@ getType user =
             .name user ++ " no es maestro ni estudiante"
 ```
 <!-- end_slide -->
-#### Excersice
+### Aliases excersice
+1.1 Create a record for programming languages aliased "ProgLangs":
+- name : String
+- releaseYear : Int
+- currentVersion: Float
+
+1.2 Create a list with at least two programming languages       
+1.3 Create a function "languageNamesV2" that receives the list from point 1.2 and generates a String list with only the names eg:      
+- Input : [{name="elm", releaseYear= 2012, currentVersion=0.19}]
+- Output: ["elm"]
+
+
+<!-- end_slide -->
+## Records exercises
+2.1 Create a record for user with aliased "User":
+- name : String
+- uType : String     
+
+2.3 Create a list of users (uType can be "Student" or "Professor")      
+2.4 Create a function "onlyStudentsV2" that receives the list from point 2.3 and generates a String list with only the name of the "Student" (professors names are emptied) eg:
+- Input : [{name="Roberto", uType= "Student"}, {name="Mitsiu", uType="Professor"}]
+- Output: ["Roberto", ""]
+<!-- end_slide -->
+
+#### Homework
 <!-- column_layout: [1,2] -->
 <!-- column: 0 -->
 Let's define a Computer record with:

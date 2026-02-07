@@ -244,7 +244,7 @@ module Main exposing (main)
 import Html
 import Html.Attributes
 
-main : Html msg
+main : Html.Html msg
 main =
     
 ```
@@ -270,7 +270,7 @@ module Main exposing (main)
 import Html
 import Html.Attributes
 
-main : Html msg
+main : Html.Html msg
 main =
     Html.p 
 ```
@@ -304,7 +304,7 @@ module Main exposing (main)
 import Html
 import Html.Attributes
 
-main : Html msg
+main : Html.Html msg
 main =
     Html.p 
         []
@@ -332,7 +332,7 @@ Html.text : String -> Html.Html msg
 <!-- pause -->
 <!-- column: 1 -->
 ```elm
-main : Html msg
+main : Html.Html msg
 main =
     Html.p 
         []
@@ -361,7 +361,7 @@ module Main exposing (main)
 import Html
 import Html.Attributes
 
-main : Html msg
+main : Html.Html msg
 main =
     Html.p 
         []
