@@ -208,29 +208,40 @@ List.map .age [mit, mit, mit]
 <!-- pause -->
 Which is it's data type?
 What does it output?
+<!-- pause -->
+```elm
+[32, 32, 32]
+```
+<!-- pause -->
+What about?
+```elm
+List.map .email [mit, mit, mit]
+List.map .email [mitV2, mitV2, mit] 
+```
 <!-- end_slide -->
 ## Records exercises
-1.1 Create a record for programming languages with:
+1.0 Let's define a record for programming languages with:
 - name : String
 - releaseYear : Int
-- currentVersion: Float
+- currentVersion: String
 
-1.2 Create a list with at least two programming languages       
-1.3 Create a function "languageNames" that receives the list from point 1.2 and generates a String list with only the names eg:      
-- Input : [{name="elm", releaseYear= 2012, currentVersion=0.19}]
-- Output: ["elm"]
+1.1 Create a list with at least two programming languages       
+1.2 Create a function "languageNames" that receives the list from point 1.1 and generates a String list with only the names eg:      
+- Input : [{name="elm", releaseYear= 2012, currentVersion="0.19.1"},{name="javascript", releaseYear= 1995, currentVersion="ECMAScript 2025"}]  
+- Output: ["elm", "javascript"]
 
 
 <!-- end_slide -->
 ## Records exercises
-2.1 Create a record for user with:
+2.0. Let's define a record for user with:
 - name : String
 - uType : String     
 
-2.3 Create a list of users (uType can be "Student" or "Professor")      
-2.4 Create a function "onlyStudents" that receives the list from point 2.3 and generates a String list with only the name of the "Student" (professors names are emptied) eg:
+2.1 Create a list of users (uType can be "Student" or "Professor")      
+2.2 Create a function "onlyStudents" that receives the list from point 2.1 and generates a String list with only the name of the "Student" (professors names are returned as an empty string) eg:
 - Input : [{name="Roberto", uType= "Student"}, {name="Mitsiu", uType="Professor"}]
 - Output: ["Roberto", ""]
+
 <!-- end_slide -->
 
 <!-- jump_to_middle -->
@@ -273,39 +284,30 @@ getType user =
 ```
 <!-- end_slide -->
 ### Aliases excersice
-1.1 Create a record for programming languages aliased "ProgLangs":
-- name : String
+1.1 Create a record for games aliased "Videogame":
+- title : String
 - releaseYear : Int
-- currentVersion: Float
+- available: Bool
+- downloads: Int
+- initGame : (String -> Bool)
+- genre : List String
 
-1.2 Create a list with at least two programming languages       
-1.3 Create a function "languageNamesV2" that receives the list from point 1.2 and generates a String list with only the names eg:      
+1.2 Create a list with at least two videogames       
+1.3 Create a function "getVideogameGenre" that receives the list from point 1.2 and generates a List of List of strings with only the genres eg:      
 - Input : [{name="elm", releaseYear= 2012, currentVersion=0.19}]
 - Output: ["elm"]
 
 
 <!-- end_slide -->
-## Records exercises
-2.1 Create a record for user with aliased "User":
-- name : String
-- uType : String     
-
-2.3 Create a list of users (uType can be "Student" or "Professor")      
-2.4 Create a function "onlyStudentsV2" that receives the list from point 2.3 and generates a String list with only the name of the "Student" (professors names are emptied) eg:
-- Input : [{name="Roberto", uType= "Student"}, {name="Mitsiu", uType="Professor"}]
-- Output: ["Roberto", ""]
-<!-- end_slide -->
 
 #### Homework
 <!-- column_layout: [1,2] -->
 <!-- column: 0 -->
-Let's define a Computer record with:
+Let's define a record named "Computer" with:
 - ram: Int
 - model: String
 - brand: String
 - screenSize: Float
-
-Let's alias this record as "Computer"
 
 <!-- column: 1 -->
 Finally, let's make an html page that generates:
