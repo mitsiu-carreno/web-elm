@@ -225,6 +225,7 @@ What does it output?
 What about?
 ```elm
 List.map .email [mit, mit, mit]
+
 List.map .email [mitV2, mitV2, mit] 
 ```
 <!-- end_slide -->
