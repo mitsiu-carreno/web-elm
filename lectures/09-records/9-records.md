@@ -105,7 +105,16 @@ Enforce format rules on our code?
 - elm-format src/        
 <!-- reset_layout -->
 <!-- end_slide -->
+# Homeworks recap
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+In your homework repositories, `please refrain from modifying the tests/TestSuite.elm file`.
 
+
+Points will be deducted if you modify it!
+<!-- column: 1 -->
+![](./assets/cheat.gif)
+<!-- end_slide -->
 <!-- jump_to_middle -->
 ## Records 
 <!-- end_slide -->
@@ -283,19 +292,18 @@ getType user =
             .name user ++ " no es maestro ni estudiante"
 ```
 <!-- end_slide -->
-### Aliases excersice
-1.1 Create a record for games aliased "Videogame":
+### Aliases exercise
+3.0 Let's define a record for games aliased "Videogame":
 - title : String
 - releaseYear : Int
 - available: Bool
 - downloads: Int
-- initGame : (String -> Bool)
-- genre : List String
+- genres : List String
 
-1.2 Create a list with at least two videogames       
-1.3 Create a function "getVideogameGenre" that receives the list from point 1.2 and generates a List of List of strings with only the genres eg:      
-- Input : [{name="elm", releaseYear= 2012, currentVersion=0.19}]
-- Output: ["elm"]
+3.1 Create a list with at least two videogames       
+3.2 Create a function "getVideogameGenres" that receives the list from point 1.2 and generates a List of List of strings with only the genres eg:      
+- Input : [{title="Control", releaseYear=2019, ... genres=["Action", "Shooter"]}, {title="Ocarina of time", ... genres=["Action", "Adventure"]}]
+- Output: [["Action", "Shooter"], ["Action", "Adventure"]]
 
 
 <!-- end_slide -->
@@ -304,23 +312,24 @@ getType user =
 <!-- column_layout: [1,2] -->
 <!-- column: 0 -->
 Let's define a record named "Computer" with:
-- ram: Int
+- ram: String
 - model: String
 - brand: String
-- screenSize: Float
+- screenSize: String
 
+And create a variable "myLaptop" of type Computer
 <!-- column: 1 -->
-Finally, let's make an html page that generates:
+Finally, let's make a variable "main" that reduces to:
 ```html
 <div>
-    <h1>My computer<h1>
-    <div>
-        <ul>
-            <li>Ram: {{Computer.ram}}</li>
-            <li>Modelo: {{Computer.model}}</li>
-            <li>Marca: {{Computer.brand}}</li>
-            <li>Pulgadas: {{Computer.screenSize}}</li>
-        </ul>
-    </div>
+  <h1>My laptop<h1>
+  <div>
+    <ul>
+      <li>Ram: {{.ram myLaptop}}</li>
+      <li>Modelo: {{.model myLaptop}}</li>
+      <li>Marca: {{.brand myLaptop}}</li>
+      <li>Pulgadas: {{.screenSize myLaptop}}</li>
+    </ul>
+  </div>
 </div>
 ```
