@@ -23,7 +23,8 @@ Agenda
 ===
 ├── Recap   
 ├── Components     
-└── Union types 
+├── Avoid repetition      
+└── Putting it all together 
 
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -227,7 +228,7 @@ aList =
 <!-- column: 1 -->
 <!-- pause -->
 ```elm
-aList : String ->Html.Html msg
+aList : String -> Html.Html msg
 ```
 <!-- pause -->
 ```elm
@@ -239,17 +240,30 @@ aList content =
             [ Html.text content ]
         ]
 ```
-
 <!-- end_slide -->
-<!-- column_layout: [5,4] -->
+## Components = Html + Functions
+Let's suppose we have three `l`ist `i`tem elements 
+```elm
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 = 
+    Html.ul [] 
+        [ Html.li []
+            [ Html.text content1 ]
+        , Html.li []
+            [ Html.text content2 ]
+        , Html.li []
+            [ Html.text content3 ]
+        ]
+```
+<!-- end_slide -->
+<!-- jump_to_middle -->
+### Avoid repetition!
+<!-- end_slide -->
+### Avoid repetition!
+<!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 
-It sucks to write this! 
-<!-- pause -->
-- It's redundant
-- I can make typos
-- I can copy/paste but what if we want to change something? (I would have to do it three times!)
-<!-- column: 1 -->
+It sucks to write code like this! 
 ```elm
 aList : Html.Html msg
 aList = 
@@ -260,3 +274,218 @@ aList =
         , Html.li [][]
         ]
 ```
+<!-- column: 1 -->
+<!-- pause -->
+- It's redundant
+- I can make typos if i write each
+- I can copy/paste but what if we want to change something? (I would have to do it three times!)
+
+---
+We should aim to write less code because it means directly less posible bugs.
+<!-- end_slide -->
+
+### Avoiding repetition
+Ok I want to tell how all \<li>\<li/> elements in my list are going to be `but only once!`
+```elm
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 = 
+    Html.ul [] 
+        [ Html.li []
+            [ Html.text content1 ]
+        , Html.li []
+            [ Html.text content2 ]
+        , Html.li []
+            [ Html.text content3 ]
+        ]
+```
+<!-- end_slide -->
+### Avoiding repetition
+I want to write something like this:
+```elm
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 =
+    Html.ul []
+        [ createListItem content1
+        , createListItem content2
+        , createListItem content3
+        ]
+``` 
+Which typeAnnotation does createListItem has to have?
+<!-- pause -->
+```elm
+createListItem : String -> Html.Html msg
+```
+<!-- end_slide -->
+### Avoiding repetition
+Which function body (definition) does createListItem could have?
+```elm
+createListItem : String -> Html.Html msg
+```
+<!-- pause -->
+```elm
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 =
+    Html.ul []
+        [ createListItem content1
+        , createListItem content2
+        , createListItem content3
+        ]
+``` 
+<!-- end_slide -->
+### Avoiding repetition
+<!-- column_layout: [3,2] -->
+<!-- column: 0 -->
+```elm +line_numbers
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 =
+    Html.ul []
+        [ createListItem content1
+        , createListItem content2
+        , createListItem content3
+        ]
+``` 
+<!-- column: 1 -->
+Now if my li element must change I only have to modify it in a single place (Line 3)
+<!-- end_slide -->
+### Hardcoded logic
+This code is a good refactor but what if I want 4 items? Or 10? Or 1?
+```elm +line_numbers {6,9-11}
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+
+aList : String -> String -> String -> Html.Html msg
+aList content1 content2 content3 =
+    Html.ul []
+        [ createListItem content1
+        , createListItem content2
+        , createListItem content3
+        ]
+``` 
+<!-- end_slide -->
+### Hardcoded logic
+We can change our aList inputs to a list of strings but something would break
+```elm +line_numbers
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+
+aList : List String -> Html.Html msg
+aList contents =
+    Html.ul []
+        [ createListItem content1 -- Now I cant access content1
+        , createListItem content2 -- or content2
+        , createListItem content3 -- or content3
+        ]
+``` 
+<!-- end_slide -->
+
+### Hardcoded logic
+What a problem, let's try to see it in context:
+```elm +line_numbers
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+aList : List String -> Html.Html msg
+aList contents =
+    Html.ul [] 
+        -- Generate a list of Html.Html msg with the <li> from createListItem
+``` 
+- On L:9 I want to transform my List String (contents) into a List Html.Html msg (\<li>'s)
+<!-- end_slide -->
+
+### Hardcoded logic
+Do we know anything that can help us transform from a List String -> List Html.Html msg?
+<!-- pause -->
+```elm 
+List.map : (a -> b) -> List a -> List b
+```
+We know that `List a` is contents (List String) and `List b` is our \<li>'s (List Html.Html msg)
+<!-- new_line -->
+- a = String
+- b = Html.Html msg
+```elm 
+List.map : (String -> Html.Html msg) -> List String -> (List Html.Html msg)
+```
+<!-- end_slide -->
+### Hardcoded logic
+Do we know anything that can help us transform from a List String -> List Html.Html msg?
+```elm 
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+aList : List String -> Html.Html msg
+aList contents =
+    Html.ul [] 
+        List.map __________ contents
+     -- List.map : (String -> Html.Html msg) -> List String -> (List Html.Html msg)
+``` 
+<!-- end_slide -->
+### Hardcoded logic
+Isn't this just beautiful!
+```elm 
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+aList : List String -> Html.Html msg
+aList contents =
+    Html.ul [] 
+        List.map createListItem contents
+``` 
+<!-- end_slide -->
+<!-- jump_to_middle -->
+#### Putting it all together
+<!-- end_slide -->
+#### Putting it all together
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+```elm
+main : Html.Html msg
+main =
+    Html.div
+        []
+        [ Html.h1 
+            [] 
+            [ Html.text "My laptop"]
+        , Html.div
+            []
+            [ 
+                aList 
+                    ["Some text"
+                    , "Other text"
+                    , "Final text"
+                    ] 
+            ]
+        ]
+```
+<!-- column: 1 -->
+```elm 
+createListItem : String -> Html.Html msg
+createListItem content =
+    Html.li [] [ Html.text content] 
+
+aList : List String -> Html.Html msg
+aList contents =
+    Html.ul [] 
+        List.map createListItem contents
+```
+- Notice I had to wrap aList on []
+<!-- end_slide -->
+<!-- jump_to_middle -->
+##### Homework
+<!-- end_slide -->
+##### Homework
