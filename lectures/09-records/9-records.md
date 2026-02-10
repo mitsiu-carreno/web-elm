@@ -145,7 +145,7 @@ mit.name
 ```
 Or we can treat the `property as a function`
 ```elm
-.name : { b | age : a} -> a
+.name : { b | name : a} -> a
 .name mit
 ```
 <!-- end_slide -->
