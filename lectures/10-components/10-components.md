@@ -305,34 +305,34 @@ I want to write something like this:
 aList : String -> String -> String -> Html.Html msg
 aList content1 content2 content3 =
     Html.ul []
-        [ createListItem content1
-        , createListItem content2
-        , createListItem content3
+        [ anItem content1
+        , anItem content2
+        , anItem content3
         ]
 ``` 
-Which typeAnnotation does createListItem has to have?
+Which typeAnnotation does anItem has to have?
 <!-- pause -->
 ```elm
-createListItem : String -> Html.Html msg
+anItem : String -> Html.Html msg
 ```
 <!-- end_slide -->
 ### Avoiding repetition
-Which function body (definition) does createListItem could have?
+Which function body (definition) does anItem could have?
 ```elm
-createListItem : String -> Html.Html msg
+anItem : String -> Html.Html msg
 ```
 <!-- pause -->
 ```elm
-createListItem content =
+anItem content =
     Html.li [] [ Html.text content] 
 
 
 aList : String -> String -> String -> Html.Html msg
 aList content1 content2 content3 =
     Html.ul []
-        [ createListItem content1
-        , createListItem content2
-        , createListItem content3
+        [ anItem content1
+        , anItem content2
+        , anItem content3
         ]
 ``` 
 <!-- end_slide -->
@@ -340,17 +340,17 @@ aList content1 content2 content3 =
 <!-- column_layout: [3,2] -->
 <!-- column: 0 -->
 ```elm +line_numbers
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 
 aList : String -> String -> String -> Html.Html msg
 aList content1 content2 content3 =
     Html.ul []
-        [ createListItem content1
-        , createListItem content2
-        , createListItem content3
+        [ anItem content1
+        , anItem content2
+        , anItem content3
         ]
 ``` 
 <!-- column: 1 -->
@@ -359,34 +359,34 @@ Now if my li element must change I only have to modify it in a single place (Lin
 ### Hardcoded logic
 This code is a good refactor but what if I want 4 items? Or 10? Or 1?
 ```elm +line_numbers {6,9-11}
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 
 aList : String -> String -> String -> Html.Html msg
 aList content1 content2 content3 =
     Html.ul []
-        [ createListItem content1
-        , createListItem content2
-        , createListItem content3
+        [ anItem content1
+        , anItem content2
+        , anItem content3
         ]
 ``` 
 <!-- end_slide -->
 ### Hardcoded logic
 We can change our aList inputs to a list of strings but something would break
 ```elm +line_numbers
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 
 aList : List String -> Html.Html msg
 aList contents =
     Html.ul []
-        [ createListItem content1 -- Now I cant access content1
-        , createListItem content2 -- or content2
-        , createListItem content3 -- or content3
+        [ anItem content1 -- Now I cant access content1
+        , anItem content2 -- or content2
+        , anItem content3 -- or content3
         ]
 ``` 
 <!-- end_slide -->
@@ -394,14 +394,14 @@ aList contents =
 ### Hardcoded logic
 What a problem, let's try to see it in context:
 ```elm +line_numbers
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 aList : List String -> Html.Html msg
 aList contents =
     Html.ul [] 
-        -- Generate a list of Html.Html msg with the <li> from createListItem
+        -- Generate a list of Html.Html msg with the <li> from anItem
 ``` 
 - On L:9 I want to transform my List String (contents) into a List Html.Html msg (\<li>'s)
 <!-- end_slide -->
@@ -423,8 +423,8 @@ List.map : (String -> Html.Html msg) -> List String -> (List Html.Html msg)
 ### Hardcoded logic
 Do we know anything that can help us transform from a List String -> List Html.Html msg?
 ```elm 
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 aList : List String -> Html.Html msg
@@ -437,14 +437,14 @@ aList contents =
 ### Hardcoded logic
 Isn't this just beautiful!
 ```elm 
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 aList : List String -> Html.Html msg
 aList contents =
     Html.ul [] 
-        List.map createListItem contents
+        List.map anItem contents
 ``` 
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -474,14 +474,14 @@ main =
 ```
 <!-- column: 1 -->
 ```elm 
-createListItem : String -> Html.Html msg
-createListItem content =
+anItem : String -> Html.Html msg
+anItem content =
     Html.li [] [ Html.text content] 
 
 aList : List String -> Html.Html msg
 aList contents =
     Html.ul [] 
-        List.map createListItem contents
+        List.map anItem contents
 ```
 - Notice I had to wrap aList on []
 <!-- end_slide -->
@@ -489,3 +489,23 @@ aList contents =
 ##### Homework
 <!-- end_slide -->
 ##### Homework
+- Create a component "headers" that given a String parameter, generates the following html code:
+```html
+<div>
+  <h1>{{param}}</h1>
+  <h2>{{param}}</h2>
+  <h3>{{param}}</h3>
+  <h4>{{param}}</h4>
+  <h5>{{param}}</h5>
+  <h6>{{param}}</h6>
+</div>
+```
+<!-- end_slide -->
+##### Homework
+- Create a component "hyperlink" that receives two Strings
+- - The url
+- - The text
+That produces the following html:
+```html
+<a href="{{url}}">{{text}}</a>
+```
