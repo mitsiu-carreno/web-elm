@@ -1,0 +1,35 @@
+digraph TrafficLight {
+  #dot -Tpng -Gsize=9,15\! -Gdpi=100  traffic_light.gv -o traffic_light.png && kitty icat traffic_light.png
+  graph [
+    fontname = "Monserrat",
+    fontcolor="white",
+    #bgcolor="black",
+    bgcolor="transparent"
+    penwidth=1.5,
+    #newrank=true, # Permite alinear HEAD
+    rankdir="LR"
+    ranksep=1
+    splines=true
+    color=white
+  ];
+  node [
+    fontcolor="white",
+    fontname = "helvetica"
+    color="#37CDCB"
+    shape=circle
+  ];
+  edge [
+    fontcolor="white",
+    color="white"
+    fontname = "helvetica"
+  ];
+
+  Red    -> Green  [label="timer"];
+  Green  -> Yellow [label="timer"];
+  Yellow -> Red    [label="timer"];
+
+  // Initial state indicator
+  start [shape=point];
+  start -> Red;
+}
+

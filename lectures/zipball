@@ -1,0 +1,44 @@
+node --version
+npm --version
+elm --version
+
+------
+disable firewall
+disable proxy
+
+------
+Internet options -> trusted sites
+-------
+rm -rf ~/.elm/0.19.1/ elm-stuff/
+elm make src/Helper.elm
+
+-----
+set NODE_TLS_REJECT_UNAUTHORIZED=0
+elm repl
+
+-----
+curl -O https://static.lamdera.com/cache/elm-package-cache-2021-02-13.zip && unzip -p elm-package-cache-2021-02-13.zip | tar xf -
+(
+unzip elm-package-cache-2021-02-13.zip
+tar xf elm-package-cache.tar
+
+# win
+curl -O https://static.lamdera.com/cache/elm-package-cache-2021-02-13.zip
+Expand-Archive elm-package-cache-2021-02-13.zip temp
+tar -xf temp\*.tar
+Remove-Item -Recurse -Force temp
+)
+at
+C:\Users\<your-username>\AppData\Roaming\elm\0.19.1\packages\
+
+-----
+Download from:
+https://github.com/elm/browser/zipball/1.0.2/
+
+move all to
+C:\Users\<your-username>\AppData\Roaming\elm\0.19.1\packages\elm\browser\1.0.2\
+
+
+----
+download .crt
+

@@ -25,7 +25,7 @@ digraph G {
   ];
 
   subgraph cluster_1 {
-    "On-time"
+    "OnTime"
     Boarding
     Delayed
     Cancelled
@@ -46,6 +46,6 @@ digraph G {
   Cancelled -> reembol
   Delayed -> esperar
   Boarding -> boleto
-  "On-time" -> esperar
+  "OnTime" -> esperar
   #{ rank = same; c0, c1, c2, c3; }
 }
