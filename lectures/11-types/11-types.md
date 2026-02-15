@@ -21,32 +21,12 @@ Agenda
 ===
 ├── Recap   
 ├── Types     
-├── Types vs Values      
-├── Custom types      
-├── Maybe      
-└── Homework
+├── Types & Values      
+└── Custom types    
 
 <!-- end_slide -->
 <!-- jump_to_middle -->
 # Recap
-<!-- end_slide -->
-# Recap
-Before I forget, I want to introduce a brand new tool:
-![](./assets/askqueue.png)
-<!-- end_slide -->
-# Recap
-Maybe you notice but I have a horrible memory, I forget to give tokens, I forget names, I forget which lecture we are at.
-
-But I really want to encourage you to ask questions, so:
-<!-- pause -->
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-I am offering two free tokens:
-- To the person that remind's me to setup askqueue and share the link
-<!-- pause -->
-- To the person that remind's me to check askqueue if an hour has passed and I havent checked
-<!-- column: 1 -->
-![](./assets/free_state.gif)
 <!-- end_slide -->
 # Recap
 Ok on our last lecture we learn that:
@@ -119,37 +99,64 @@ List.map anItem ["1", "2"]   =>   , Html.li [] [ Html.text "2" ]
 
 We can use the List.map result => `List (Html.Html msg)` as the second parameter of any Html element
 <!-- end_slide -->
-<!-- jump_to_middle -->
-#### Types
+# Recap
+Before I forget, I want to introduce a brand new tool:
+![](./assets/askqueue.png)
 <!-- end_slide -->
-#### Types
-Let's say we want to track if a student passed or failed the course, which data type should we use?
+# Recap
+Maybe you notice but I have a horrible memory, I forget to give tokens, I forget names, I forget which lecture we are at.
+
+But I really want to encourage you to ask questions, so:
+<!-- pause -->
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+I am offering two free tokens:
+- To the person that remind's me to setup askqueue and share the link
+<!-- pause -->
+- To the person that remind's me to check askqueue if an hour has passed and I havent checked
+<!-- column: 1 -->
+![](./assets/free_state.gif)
+<!-- end_slide -->
+# Recap
+Learning material:
+1. This slides
+2. https://www.youtube.com/watch?v=WgJ2FUW1miA&list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb
+3. https://elmprogramming.com/
+4. (Official guide) https://guide.elm-lang.org/
+5. (Official docs) https://package.elm-lang.org/packages/elm/core/latest/
+6. (Advanced level - Standard ML) https://www.youtube.com/watch?v=jjX68oHAw-Y&list=PLsydD1kw8jng2t2G8USQNLz0faYZetPnH
+<!-- end_slide -->
+<!-- jump_to_middle -->
+## Types
+<!-- end_slide -->
+## Types
+Let's say we want to track if a student approved or failed the course, which data type should we use?
 <!-- pause -->
 Did I guess your solution?
 ```elm
-passed : Bool
+approved : Bool
 ```
 There's a little issue with using Bool, it's more limited than what we need.
 Right now did you pass this course? Should I register False?
 ```elm
-passed : Bool
-passed = False
+approved : Bool
+approved = False
 ```
-That doesn't represent reallity, you haven't passed the course, yet you haven't failed the course either!
+That doesn't represent reallity, you haven't approved the course, yet you haven't failed the course either!
 <!-- end_slide -->
-#### Types
+## Types
 The current state about your grade is "pending" but a Bool only allows us two possible states.     
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 Which data type should we use? 
 <!-- pause -->
 ```elm
-passed : String
-passed = "Pending"
+result : String
+result = "Failed"
 
-shouldPay : String -> Bool
-shouldPay passed = 
-    case passed of
+extraExam : String -> Bool
+extraExam result = 
+    case result of
         "approved" -> False
         "failed" -> True
         "pending" -> False
@@ -158,10 +165,15 @@ shouldPay passed =
 <!-- pause -->
 <!-- column: 1 -->
 This solution has two big disadvantages:
-1. We have to case on _ because there are many `other possible strings` even if they are not real passed values
+1. We have to case on _ because there are many `other possible strings` even if they are not real result values
 2. This code outputs that `no one should pay!
+<!-- pause -->
+("Failed" != "failed")
 <!-- end_slide -->
-## Types vs values
+<!-- jump_to_middle -->
+### Types & values
+<!-- end_slide -->
+### Types & values
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 ![](./assets/traffic_l.png)
@@ -180,7 +192,7 @@ Even though
 - There are more colors (Purple, Brown, Blue)
 - There are more strings ("Apple", "Car", "Traffic")
 <!-- end_slide -->
-## Types vs values
+### Types & values
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 ![](./assets/traffic_l.png)
@@ -202,16 +214,22 @@ Even though
 - There are more colors (Purple, Brown, Blue)
 - There are more strings ("Apple", "Car", "Traffic")
 <!-- end_slide -->
-## Custom type
+### Types & values
 > Types: Is a collection or grouping of data values, usually specified by a `set of possible values`, a set of allowed operations on these values, and/or a representation of these values as machine types.
 
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
-A `traffic light` can have the values: 
+A `Bool` (other type) can have the values:
+- True
+- False
+
+<!-- column: 1 -->
+A `traffic light` (our type) can have the values: 
 - Red 
 - Green
 - Yellow
-<!-- column: 1 -->
+
+We can express this in elm with:
 ```elm
 type TrafficLight
     = Green
@@ -220,7 +238,7 @@ type TrafficLight
 ```
 <!-- reset_layout -->
 <!-- end_slide -->
-## Custom type
+### Types & values
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
 A `Bool` can have the values: 
@@ -251,7 +269,7 @@ myTrafficLight = Green
 <!-- reset_layout -->
 <!-- end_slide -->
 #### Custom types
-Let's come back to our initial problem, we want to track if a student passed or failed the course or if the grade is still "Pending", Bool is to constrained, String is to loose, let's make a new type (collection of values) that fit this specific problem
+Let's come back to our initial problem, we want to track if a student approved or failed the course or if the grade is still "Pending", Bool is to constrained, String is to loose, let's make a new type (collection of values) that fit this specific problem
 Let's make our own data type:
 <!-- column_layout: [1,1] -->
 <!-- column: 0 -->
@@ -266,8 +284,8 @@ We created a new data type (just like Int, Float, Bool) that have three possible
 <!-- column: 1 -->
 We can create a variable of type GradeStatus
 ```elm
-estatus : GradeStatus
-estatus = Pending
+result: GradeStatus
+result = Pending
 
 falso : Bool
 falso = False
@@ -283,14 +301,14 @@ type GradeStatus
     | Failed
     | Pending
 
-passed : GradeStatus
-passed = Pending
+result : GradeStatus
+result = Pending
 ```
 <!-- column: 1 -->
 ```elm
-shouldPay : GradeStatus -> Bool
-shouldPay passed = 
-    case passed of
+extraExam : GradeStatus -> Bool
+extraExam result = 
+    case result of
         Approved -> False
         Failed -> True
         Pending -> False
@@ -301,87 +319,13 @@ Just like True is a possible value of the data type Bool.
 <!-- end_slide -->
 
 #### Custom types exercises
-1.0 Create a function "categoricalGrade" that given a list of grades return the category gradeStatus (Approved | Failed | Pending) where any negative number is Pending    
+1.0 Create a function "categoricalGrade" that given a list of grades (float) return a list of (type) "GradeStatus" (with one of the following values) (Approved | Failed | Pending) where any negative number is Pending    
 <!-- column_layout: [3,2] -->
 <!-- column: 0 -->
 2.1 Create a type "AirplaneStatus" (OnTime | Boarding | Delayed | Cancelled)
 
-2.2 Create a function "airplaneScheduleAction" that maps as follows:     
+2.2 Create a function "airplaneScheduleAction" that maps as the following graph:     
 
 2.3 Create a function "airportAction" that given a list of AirplaneStatus transform it into a list of strings with airplaneScheduleActions
 <!-- column: 1 -->
 ![](./assets/gviz/plainSchedule.png)
-<!-- end_slide -->
-// piggiback type with payload?
-<!-- jump_to_middle -->
-##### Maybe
-<!-- end_slide -->
-##### Maybe
-Previously we wrote a function:
-> Make a function "head" that returns the first Int in a Int list, if the list is empty return -100.
-
-And that is a horrible function, any idea why?
-<!-- pause -->
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-```latex +render
-\begin{align}
-head\text{ }[1,2,3] &\Longrightarrow  2 \\ 
-head\text{ }[2,3,1] &\Longrightarrow  2 \\ 
-head\text{ }[2,3] &\Longrightarrow  2 \\
-head\text{ }[] &\Longrightarrow   -100
-\end{align}
-```
-<!-- pause -->
-<!-- column: 1 -->
-```latex +render
-\begin{align}
-head\text{ }[-100,-101,-102]  \\ 
-\end{align}
-```
-<!-- pause -->
-```latex +render
-\begin{align}
- &\Longrightarrow -100 \\ 
-\end{align}
-```
-We have false positives
-<!-- end_slide -->
-##### Maybe
-But given our current knowledge I had no other option...
-
-Let's fix that.
-
-What should our head function return if the input list it's empty?
-```elm
-head : List Int -> Int --?
-```
-##### Challenge
-<!-- column_layout: [1,1] -->
-<!-- column: 0 -->
-- Create a function like:
-```elm
-myLaptopToStrings : Computer -> List String
-myLaptopToStrings laptopInfo =
-    -- Your definition here
-```
-So that an input like:
-<!-- column: 1 -->
-```elm
-myLaptop : Computer
-myLaptop =
-    { ram = "32"
-    , model = "Thinkpad x1"
-    , brand = "Lenovo"
-    , screenSize = "13.5"
-    }
-
-myLaptopToStrings myLaptop 
-    Reduces to =>
-    [ "Ram: 32"
-    , "Modelo: Thinkpad x1"
-    , "Marca: Lenovo"
-    , "Pulgadas: 13.5"
-    ]
-```
-
