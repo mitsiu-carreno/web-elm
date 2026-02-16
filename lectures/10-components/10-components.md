@@ -55,6 +55,34 @@ Inside we find `l`ist `i`tems (li), representing each possible category.
 <!-- pause -->
 Marks a point in html to produce a line `br`eak
 <!-- end_slide -->
+# Recap
+Before I forget, I want to introduce a brand new tool:
+![](./assets/askqueue.png)
+<!-- end_slide -->
+# Recap
+Maybe you notice but I have a horrible memory, I forget to give tokens, I forget names, I forget which lecture we are at.
+
+But I really want to encourage you to ask questions, so:
+<!-- pause -->
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+I am offering two free tokens:
+- To the person that remind's me to setup askqueue and share the link
+<!-- pause -->
+- To the person that remind's me to check askqueue if an hour has passed and I havent checked
+<!-- column: 1 -->
+![](./assets/free_state.gif)
+<!-- end_slide -->
+# Recap
+Learning material:
+1. This slides
+2. https://www.youtube.com/watch?v=WgJ2FUW1miA&list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb
+3. https://elmprogramming.com/
+4. (Official guide) https://guide.elm-lang.org/
+5. (Official docs) https://package.elm-lang.org/packages/elm/core/latest/
+6. (Advanced level - Standard ML) https://www.youtube.com/watch?v=jjX68oHAw-Y&list=PLsydD1kw8jng2t2G8USQNLz0faYZetPnH
+<!-- end_slide -->
+
 # Previously on...
 <!-- column_layout: [1,2] -->
 <!-- column: 0 -->

@@ -49,6 +49,14 @@ Learning material:
 5. (Official docs) https://package.elm-lang.org/packages/elm/core/latest/
 6. (Advanced level - Standard ML) https://www.youtube.com/watch?v=jjX68oHAw-Y&list=PLsydD1kw8jng2t2G8USQNLz0faYZetPnH
 <!-- end_slide -->
+# Recap
+Our next tests:
+- 2nd Partial = 30%
+- - Class exercise / Homework = 10%
+- - Theorical evaluation = 40%
+- - Practical evaluation (paper based, NO computer!) = 50%
+
+<!-- end_slide -->
 
 # Recap (Unit 1)
 - Command to print current working directory
@@ -263,7 +271,142 @@ flipAll funcTrans list =
 3. How do we apply flipAll to get the result [True, False, True]
 <!-- pause -->
 - - flipAll flipper [False, True, False]
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+- What's the difference between html elements and attributes?
+<!-- pause -->
+- - Html elements are visual and compose the screen, they exist for the user to see and interact, html attributes are metadata to the elements, allowing to group, modify the behaviour, or specify interaction between the user and the elements.
+<!-- new_line -->
+- Which html tags have opening and closing tags?
+<!-- pause -->
+- - \<p>\</p> | \<h1>\</h1> | \<a>\</a> | \<ul>\</ul> | \<li>\</li> | \<div>\</div>
+<!-- new_line -->
+- Which html tags `don't` have opening and closing tags (void elements)?
+<!-- pause -->
+- - \<br> | \<img>
+<!-- new_line -->
+- In an Html element where do we place the content? 
+<!-- pause -->
+- - Between the opening and closing tags \<p>`content`\</p>
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+- In an Html element where do we place the attributes
+<!-- pause -->
+- - In the opening tag \<p `class="value"`>content\</p>
+<!-- new_line -->
+- All html elements have the following type annotation, what does it means?
+```elm
+<function> : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
+```
+<!-- pause -->
+- - It says that the function (h1, p, div, a, ...) expect's two parameters, a list of html attributes (class, id, href, ...) and a list of child html elements (h1, p, div, a, ...)
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+- Given the previous type annotation, which data type has main if I declare:
+```elm
+<function> : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
+```
+```elm
+main = Html.h1 [] [] 
+```
+<!-- pause -->
+- - main : Html.Html msg
 
+
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+In elm how do I produce the following html:
+```html
+<p></p>
+```
+<!-- pause -->
+```elm
+Html.p [] []
+```
+In elm how do I produce the following html:
+```html
+<p class="value"></p>
+```
+<!-- pause -->
+```elm
+Html.p [ Html.Attributes.class "value"] []
+```
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+In elm how do I produce the following html:
+```html
+<p>content</p>
+```
+<!-- pause -->
+```elm
+Html.p [] [ Html.text "content"]
+```
+In elm how do I produce the following html:
+```html
+<p id="main">Content</p>
+```
+<!-- pause -->
+```elm
+Html.p [Html.Attributes.id "main"] [Html.text "Content"]
+```
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+In elm how do I produce the following html:
+```html
+<p><strong></strong></p>
+```
+<!-- pause -->
+```elm
+Html.p [] [Html.strong [][]]
+```
+In elm how do I produce the following html:
+```html
+<p><strong>content</strong></p>
+```
+<!-- pause -->
+```elm
+Html.p [] [Html.strong [][Html.text "content"]]
+```
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+In elm how do I produce the following html:
+```html
+<p>content<strong></strong></p>
+```
+<!-- pause -->
+```elm
+Html.p [] [Html.text "content", Html.strong [][]]
+```
+In elm how do I produce the following html:
+```html
+<p>content<strong>CONTENT</strong></p>
+```
+<!-- pause -->
+```elm
+Html.p [] [Html.text "content", Html.strong [][Html.text "CONTENT"]]
+```
+<!-- end_slide -->
+# Recap (Unit 1) - Html
+In elm how do I produce the following html:
+```html
+<p id="main">content<strong class="bold">SubContent</strong></p>
+```
+<!-- pause -->
+```elm
+Html.p [ Html.Attributes.id "main"] 
+       [
+          Html.text "content"
+          , Html.strong [ Html.Attributes.class "bold"]
+                        [
+                            Html.text "SubContext"
+                        ]
+       ]
+```
+<!-- end_slide -->
+# Recap (Unit 2)
+
+
+<!-- end_slide -->
 ### Challenges
 Add to the back of a list
 Alternate strongs in li
