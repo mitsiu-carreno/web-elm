@@ -22,7 +22,8 @@ Agenda
 ├── Recap   
 ├── Types     
 ├── Types & Values      
-└── Custom types    
+├── Custom types      
+└── Lambdas    
 
 <!-- end_slide -->
 <!-- jump_to_middle -->
@@ -319,7 +320,7 @@ Just like True is a possible value of the data type Bool.
 <!-- end_slide -->
 
 #### Custom types exercises
-1.0 Create a function "categoricalGrade" that given a list of grades (float) return a list of (type) "GradeStatus" (with one of the following values) (Approved | Failed | Pending) where any negative number is Pending    
+1.0 Create a function "categoricalGrade" that given a list of grades (float) return a list of (type) "GradeStatus" (with one of the following values) (Approved | Failed | Pending) where any negative number is Pending, and any number greater than 7 is Approved   
 <!-- column_layout: [3,2] -->
 <!-- column: 0 -->
 2.1 Create a type "AirplaneStatus" (OnTime | Boarding | Delayed | Cancelled)
@@ -329,3 +330,162 @@ Just like True is a possible value of the data type Bool.
 2.3 Create a function "airportAction" that given a list of AirplaneStatus transform it into a list of strings with airplaneScheduleActions
 <!-- column: 1 -->
 ![](./assets/gviz/plainSchedule.png)
+
+<!-- end_slide -->
+<!-- column_layout: [1,2] -->
+<!-- column: 0 -->
+<!-- jump_to_middle -->
+##### Lambdas
+<!-- column: 1 -->
+<!-- new_line -->
+<!-- new_line -->
+<!-- new_line -->
+![](./assets/lambda.png)
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+```
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
+Which data type is `double` in List.map?
+<!-- pause -->
+- Int to Int
+
+Which data type is `[1,2,3]` in List.map?
+<!-- pause -->
+- List Int
+<!-- column: 1 -->
+What is `double`?
+<!-- pause -->
+- double is a `function` that receives an Int and gives an Int
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+```
+But with this solution we had to create a whole function that's only used in a single place.
+
+Introducing `Lambdas` (Arrow function || Anonymous function)
+Just like High-order functions (functions can be used as variables) Lambdas is other concept several languages has copied from functional programming.
+
+> Lambdas (arrow functions) is a compact alternative to a traditional function expression.
+Mozilla Firefox
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+```
+To translate a function into a lambda we should first start by expressing where our lambda function starts and ends:
+```elm
+List.map (\           ) [1,2,3]  -- => [2,4,6]
+--       ^            ^
+--  Start             End
+```
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+-- List.map (\           ) [1,2,3]  -- => [2,4,6]
+```
+How many parameters does the function double receives?
+<!-- pause -->
+Which name does the parameter has?
+<!-- pause -->
+```elm
+List.map (\x          ) [1,2,3]  -- => [2,4,6]
+--         ^            
+--      Single parameter named x (no type annotation)
+```
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+-- List.map (\x          ) [1,2,3]  -- => [2,4,6]
+```
+Which character in double signifies the end of the parameters and the start of the function definition? 
+<!-- pause -->
+- =
+```elm
+List.map (\x ->       ) [1,2,3]  -- => [2,4,6]
+--           ^^
+--      Arrow marks the end of parameters and start of body
+```
+<!-- end_slide -->
+##### Lambdas
+Let's go back to our basics:
+```elm
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+-- List.map (\x ->       ) [1,2,3]  -- => [2,4,6]
+```
+We can pass the same function body
+<!-- pause -->
+```elm
+List.map (\x -> 2 * x ) [1,2,3]  -- => [2,4,6]
+--              ^^^^^
+--              Function body
+```
+<!-- end_slide -->
+
+##### Lambdas
+Lines 5 and 6 do the same operation
+```elm +line_numbers {1-5|6}
+double : Int -> Int
+double x =
+    2 * x
+
+List.map double [1,2,3]  -- => [2,4,6]
+List.map (\x -> 2 * x ) [1,2,3]  -- => [2,4,6]
+```
+
+Notice that lambda expressions are anonymous, `the function doesn't have a name`.
+
+So it can't be referenced later
+
+```elm 
+List.map (\x -> 2 * x ) [1,2,3]  -- => [2,4,6]
+List.map (\x -> 2 * x ) [-3,-2,-1]  -- => [-6,-4,-2]
+```
+
+I had to rewrite the lambda because I couldn't reuse it from before
+<!-- end_slide -->
+
+##### Lambda challenge
+Please fill the gaps with a lambda that sum's all parameters
+```elm
+adder3 : (Int -> Int -> Int) -> Int
+adder3 paramLambda=
+    paramLambda 1 2 
+
+adder3 (\      ->          )   -- => 3
+--       ^^ ^^    ^^^^^^
+```
