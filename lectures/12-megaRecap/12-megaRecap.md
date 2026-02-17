@@ -404,11 +404,147 @@ Html.p [ Html.Attributes.id "main"]
 ```
 <!-- end_slide -->
 # Recap (Unit 2)
-
-
+- How are records usefull? What possibility they offer that List or other primitives dont?
+<!-- pause -->
+- - They allow us to group several fields to represent complex data (e.g. A person is more than just a name : String or an age: Int, or a role: UType, is the combination of all)
+<!-- new_line -->
+- Which simbol/character do we use to mark the begining and the end of a record?
+<!-- pause -->
+- - {} Curly braces
+<!-- end_slide -->
+# Recap (Unit 2)
+- What's the meaning of the following expression?
+```elm
+mit : { age:Int }
+mit = { age = 32 }
+mit.age
+```
+<!-- pause -->
+- - From the variable "mit" it returns the value of the property "age"
+- What's the meaning of the following expression?
+```elm
+mit : { age:Int }
+mit = { age = 32 }
+.age mit
+```
+<!-- pause -->
+- - There's a function ".age" that expect's a parameter of type record with at least the property age (we send mit as that parameter)
+<!-- end_slide -->
+# Recap (Unit 2)
+- What's the type annotation of the function .age?
+<!-- pause -->
+```elm
+{ b | age : a } -> a
+```
+<!-- new_line -->
+- What does the following expression do:
+```elm
+{ mit | email = "mitsiu.carreno@upa" }
+```
+<!-- pause -->
+- - Creates a `new record` based on all the properties in mit, except the email, which is bound to the value "mitsiu.carreno@upa".
+- - As an important side note, mit remains unchaged (it's values aren't modified)
+<!-- end_slide -->
+# Recap (Unit 2)
+- What does the following expression reduces to? 
+```elm
+List.map .age [mit, mit, mit, mit, mit]
+```
+<!-- pause -->
+- - List.map will take each element (mit : { age : Int }) and apply .age to mit, remember that .age : { b | age : a } -> a which means that .age expects a record that has a property age of an unknown type, for mit : { age : Int } we can replace alpha to { mit | age : Int } -> Int, the result will be a List [32, 32, 32] 
+<!-- new_line -->
+- Which keywords does a alias use?
+<!-- pause -->
+- - `type alias`
+<!-- new_line -->
+- Exemplify a type alias of Int to Entero
+<!-- pause -->
+```elm
+type alias Entero = Int
+```
+<!-- end_slide -->
+# Recap (Unit 2)
+- Exemplify a type alias of { color: String, weight: Float, type: String } to Apple
+<!-- pause -->
+```elm
+type alias Apple = 
+    { color : String
+    , weight : Float
+    , type : String
+    }
+```
+Notice type alias only affect the type is not involved on values
+<!-- new_line -->
+- Which benefits does creating aliases has?
+<!-- pause -->
+- - Using records is easier because we refer to entities like Apple, User, Computer rather than describing the whole implementation which might risk interpretation. 
+- - Updating records became instant and we can focus on updating values rather than types.
+<!-- end_slide -->
+# Recap (Unit 2)
+- What is a component?
+<!-- pause -->
+- - A combination of functions and Html, which allows us to reuse our html in versatile ways.
+<!-- new_line -->
+- Why repetiton of code should be avoided?
+<!-- pause -->
+- - Code repetition makes maintainability harder, as there's more code that can be flawed. We should aim to write less code to reduce the surface of potential bugs.
+<!-- new_line -->
+- How do we turn a variable into a function?
+<!-- pause -->
+- - By adding an input and maintaining the previous type as output, also adding variables to catch the parameter values
+```elm
+anItem : Html.Html msg          anItem : String -> Html.Html msg
+anItem = Html.li []         =>  anItem str = Html.li []
+    [ Html.text "Static" ]          [ Html.text str ]    
+```
+<!-- end_slide -->
+# Recap (Unit 2)
+- Which are the keywords used to create a new custom data type?
+<!-- pause -->
+```elm
+type ________ 
+    = Invariant 1
+    | Invariant 2
+    | Invariant 3
+```
+<!-- new_line -->
+- From the previous notation, what are the invariants?
+<!-- pause -->
+- - Are possible values of the type defined
+<!-- new_line -->
+- How can we define a data type?
+<!-- pause -->
+- - It's a collection of possible values (possible states) (e.g. the type TrafficLight can have the values Green, Red, Yellow)
+<!-- end_slide -->
+# Recap (Unit 2)
+- What are some benefits from using custom types instead of primitives?
+<!-- pause -->
+- - Custom types allow us to fit the type and values to specific problems, primitive data types might be to constrained or flexible to adecuately represent one problem which leads to interpretation.
+<!-- new_line -->
+- What is a lambda expression?
+<!-- pause -->
+- - It's an alternative way to express a function
+<!-- new_line -->
+- What is the cost of lambda expressions?
+<!-- pause -->
+- - As it's anonymous, it can only be referenced in the place its created, preventing any kind of reuse.
+<!-- end_slide -->
+# Recap (Unit 2)
+- What's the syntax for a lambda experssion? 
+<!-- pause -->
+```elm
+(\ ____ -> _______)
+^^  ^         ^   ^
+||  |         |   |
+|| Params   Body  |
+||                |
+||       Lambda end
+Lambda start
+```
 <!-- end_slide -->
 ### Challenges
-Add to the back of a list
-Alternate strongs in li
-integrate myLaptop exer to the component aList
+- Add to the back of a list
+- Alternate strongs in li
+- integrate myLaptop exer to the component aList
+- List.map of a list of {url:String, content: String}
 
