@@ -54,8 +54,15 @@ Our next tests:
 <!-- end_slide -->
 ## Elm arquitecture
 The basic pattern looks something like this:
+<!-- column_layout: [1,1] -->
+<!-- column: 0 -->
 ![](./assets/flow.png)
+<!-- column: 1 -->
 The Elm program produces HTML to show on screen, and then the computer sends back messages of what is going on. "They clicked a button!"
+<!-- reset_layout -->
+- An application starts with an initial state and presents that state to the user through UI.
+- The user takes some action through a UI element that modifies the inital state.
+- The new state is then presented back to the user for more actions.
 <!-- end_slide -->
 ## Elm arquitecture
 The basic pattern looks something like this:
