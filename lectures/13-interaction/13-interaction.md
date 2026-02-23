@@ -317,3 +317,7 @@ view model =
         ]
 
 ```
+
+<!-- end_slide -->
+###### Wiring everything up             
+![](./assets/detail_flow.png)
