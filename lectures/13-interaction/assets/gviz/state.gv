@@ -1,0 +1,88 @@
+digraph G {
+  #dot -Tpng -Gsize=15,15\! -Gdpi=100  state.gv -o state.png && kitty icat state.png
+  graph [
+    fontname = "Monserrat",
+    fontcolor="white",
+    #bgcolor="black",
+    bgcolor="transparent"
+    penwidth=1.5,
+    #newrank=true, # Permite alinear HEAD
+    rankdir="LR"
+    ranksep=1.3
+    splines=ortho
+    color=white
+  ];
+  node [
+    fontcolor="white",
+    fontname = "helvetica"
+    color="#37CDCB"
+    shape=box
+  ];
+  edge [
+    fontcolor="white",
+    color="white"
+    fontname = "helvetica"
+  ];
+
+  // =========================
+    // Cluster 1
+    // =========================
+    subgraph cluster_app1 {
+        label="Application - State 0"
+        labelloc="t"
+        style="rounded,dashed"
+        margin=30
+
+        // Horizontal boxes inside cluster
+        ui1    [label="User Interface"]
+        state1 [label="currentNum = 0"]
+
+
+        ui1 -> state1 [style=invis]
+        state1 -> ui1 [xlabel="Render"]
+        { rank=same; ui1; state1 }
+    }
+
+    // =========================
+    // Cluster 2
+    // =========================
+    subgraph cluster_app2 {
+        label="Application - State 1"
+        labelloc="t"
+        style="rounded,dashed"
+        margin=30
+
+        state2 [label="currentNum = -1"]
+        ui2    [label="User Interface"]
+        state2 -> ui2 [xlabel="Render"]
+        { rank=same; state2; ui2 }
+
+    }
+
+    // =========================
+    // Cluster 3
+    // =========================
+    subgraph cluster_app3 {
+        label="Application - State 2"
+        labelloc="t"
+        style="rounded,dashed"
+        margin=30
+
+        state3 [label="currentNum = -2"]
+        ui3    [label="User Interface"]
+        state3 -> ui3 [xlabel="Render"]
+        { rank=same; state3; ui3 }
+
+    }
+
+    // Optional edges between clusters
+    state1 -> state2 -> state3 [style=invis]
+    ui1 -> ui2 -> ui3 [style=invis]
+
+    ui1 -> state2 [label=<
+        Interaction<br/>(Decrement)>]
+
+    ui2 -> state3 [label=<
+        Interaction<br/>(Decrement)>]
+
+}
